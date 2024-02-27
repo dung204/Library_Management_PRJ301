@@ -193,7 +193,7 @@ erDiagram
     User }o--|| Role : has
     User ||--o{ Checkout : does
     Checkout ||--|{ Book : contains
-    Author ||--|{ Book : writes
+    Author }|--|{ Book : writes
     Book }|--|{ Category: "belongs to"
     User ||--o{ Fine: pays
 ```
