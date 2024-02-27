@@ -1,9 +1,14 @@
 package com.mantrilogix.fine.entity;
 
+import com.mantrilogix.checkout.entity.Checkout;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
@@ -20,11 +25,14 @@ public class Fine {
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
 
+  @OneToOne
+  @JoinColumn(name = "checkout_id", referencedColumnName = "id", nullable = false)
+  private Checkout checkout;
+
   @Transient
   private Integer overdueHours;
 
   @Transient
   private Double fineAmount;
 
-  // TODO: relationship with checkout
 }

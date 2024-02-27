@@ -14,12 +14,12 @@ public class FineService {
     this.fineRepository = fineRepository;
   }
 
-  public Fine getFine(String id) {
-    return fineRepository.findById(id).orElse(null);
+  public Fine getFine(String checkoutId) {
+    return fineRepository.findByCheckoutId(checkoutId).orElse(null);
   }
 
-  public void deleteFine(String id) {
-    fineRepository.deleteById(id);
+  public void deleteFine(String checkoutId) {
+    fineRepository.deleteByCheckoutId(checkoutId);
   }
 
   public Fine updateFine(Fine fine) {

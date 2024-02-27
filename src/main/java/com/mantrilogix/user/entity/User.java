@@ -1,15 +1,22 @@
 package com.mantrilogix.user.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.annotations.CurrentTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.mantrilogix.checkout.entity.Checkout;
+import com.mantrilogix.role.entity.Role;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -48,5 +55,10 @@ public class User {
   @UpdateTimestamp
   private LocalDateTime updatedTimestamp;
 
-  // TODO: relationship with role
+  @ManyToOne
+  @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+  private Role role;
+
+  @OneToMany(mappedBy = "id", targetEntity = Checkout.class)
+  private List<Checkout> checkouts;
 }
