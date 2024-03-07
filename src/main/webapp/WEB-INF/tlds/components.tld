@@ -19,4 +19,40 @@
     <tag-class>com.books_maison.tag_handlers.components.SearchInputTagHandler</tag-class>
   </tag>
 
+  <tag>
+    <name>FacebookLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.FacebookLogoTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>TwitterLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.TwitterLogoTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>InstagramLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.InstagramLogoTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>YoutubeLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.YoutubeLogoTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>HouseLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.HouseLogoTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>PhoneLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.PhoneLogoTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>MailLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.MailLogoTagHandler</tag-class>
+  </tag>
+
+
 </taglib>
