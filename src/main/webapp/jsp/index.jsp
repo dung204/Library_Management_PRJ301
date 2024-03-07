@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Library Management</title>
-</head>
-<body>
-  <h1>Hello world from Spring Boot + JSP</h1>
-</body>
-</html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+  pageEncoding="UTF-8" %> 
+<%@taglib uri="/WEB-INF/tlds/layouts.tld" prefix="layouts" %>
+<%@taglib uri="/WEB-INF/tlds/components.tld" prefix="components" %>
+
+<layouts:Default title="Home">
+  <jsp:include page="header.jsp" />
+</layouts:Default>
