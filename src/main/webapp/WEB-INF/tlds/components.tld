@@ -54,5 +54,23 @@
     <tag-class>com.books_maison.tag_handlers.components.MailLogoTagHandler</tag-class>
   </tag>
 
+  <tag>
+    <name>ArrowRepeatLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.ArrowRepeatLogoTagHandler</tag-class>
+  </tag>
 
+  <tag>
+    <name>HeadsetLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.HeadsetLogoTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>PatchCheckLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.PatchCheckLogoTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>PersonBadgeLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.PersonBadgeLogoTagHandler</tag-class>
+  </tag>
 </taglib>

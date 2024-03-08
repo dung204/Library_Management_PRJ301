@@ -9,6 +9,7 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   height: 100vh;
 }
 
@@ -20,8 +21,12 @@ hr {
   opacity: 1;
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+.about-us {
+  background-color: rgb(245, 245, 245);
+  padding-block: 6rem;
+}
+
+.categories {
+  background-color: white;
+  padding-block: 6rem;
 }
