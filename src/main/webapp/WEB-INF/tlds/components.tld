@@ -73,4 +73,24 @@
     <name>PersonBadgeLogo</name>
     <tag-class>com.books_maison.tag_handlers.components.PersonBadgeLogoTagHandler</tag-class>
   </tag>
+
+  <tag>
+    <name>BankLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.BankLogoTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>CurrencyLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.CurrencyLogoTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>GlobeLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.GlobeLogoTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>MusicNoteLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.MusicNoteLogoTagHandler</tag-class>
+  </tag>
 </taglib>
