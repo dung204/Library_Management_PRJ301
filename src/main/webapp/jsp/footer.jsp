@@ -9,16 +9,16 @@
           <components:MainLogoLight />
           <div class="row gx-5 mt-4">
             <div class="col-auto">
-              <components:FacebookLogo />
+              <components:FacebookLogo className="fs-4" />
             </div>
             <div class="col-auto">
-              <components:InstagramLogo />
+              <components:InstagramLogo className="fs-4" />
             </div>
             <div class="col-auto">
-              <components:TwitterLogo />
+              <components:TwitterLogo className="fs-4" />
             </div>
             <div class="col-auto">
-              <components:YoutubeLogo />
+              <components:YoutubeLogo className="fs-4" />
             </div>
           </div>
           <p class="mt-4">
@@ -39,7 +39,7 @@
               <p><a href="/" class="text-white">Trang chủ</a></p>
               <p><a href="/" class="text-white">Sách</a></p>
               <p><a href="/" class="text-white">Tin tức</a></p>
-              <p><a href="/" class="text-white">Liên hệ</a></p>
+              <p><a href="/" class="text-white">Việc làm</a></p>
             </div>
             <div class="col-8">
               <div class="row">

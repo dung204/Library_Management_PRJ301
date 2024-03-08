@@ -6,16 +6,21 @@ import java.util.logging.Logger;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.TagSupport;
 
+import lombok.*;
+
+@Setter
+@Getter
 public class ArrowRepeatLogoTagHandler extends TagSupport {
   private Logger logger = Logger.getLogger(ArrowRepeatLogoTagHandler.class.getName());
+  private String className;
 
   @Override
   public int doStartTag() throws JspException {
     try {
       pageContext.getOut().print(
           """
-              <i class="bi bi-arrow-repeat fs-1"></i>
-              """);
+              <i class="bi bi-arrow-repeat %s"></i>
+              """.formatted(className == null ? "" : className));
     } catch (IOException e) {
       logger.severe(e.getMessage());
     }

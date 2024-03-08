@@ -6,16 +6,21 @@ import java.util.logging.Logger;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.tagext.TagSupport;
 
+import lombok.*;
+
+@Setter
+@Getter
 public class HeadsetLogoTagHandler extends TagSupport {
   private Logger logger = Logger.getLogger(HeadsetLogoTagHandler.class.getName());
+  private String className;
 
   @Override
   public int doStartTag() throws JspException {
     try {
       pageContext.getOut().print(
           """
-              <i class="bi bi-headset fs-1"></i>
-              """);
+              <i class="bi bi-headset %s"></i>
+              """.formatted(className == null ? "" : className));
     } catch (IOException e) {
       logger.severe(e.getMessage());
     }

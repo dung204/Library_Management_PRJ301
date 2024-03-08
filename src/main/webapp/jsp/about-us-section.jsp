@@ -37,7 +37,7 @@
           <div class="row gx-5 mt-5">
             <div class="col">
               <div class="d-flex align-items-center">
-                <components:PersonBadgeLogo />
+                <components:PersonBadgeLogo className="fs-1" />
                 <div class="border border-1 border-black ms-2" style="width: 10rem; height: 0"></div>
               </div>
               <div class="mt-2">
@@ -52,7 +52,7 @@
             </div>
             <div class="col">
               <div class="d-flex align-items-center">
-                <components:ArrowRepeatLogo />
+                <components:ArrowRepeatLogo className="fs-1" />
                 <div class="border border-1 border-black ms-2" style="width: 10rem; height: 0"></div>
               </div>
               <div class="mt-2">
@@ -69,7 +69,7 @@
           <div class="row gx-5 mt-5">
             <div class="col">
               <div class="d-flex align-items-center">
-                <components:PatchCheckLogo />
+                <components:PatchCheckLogo className="fs-1" />
                 <div class="border border-1 border-black ms-2" style="width: 10rem; height: 0"></div>
               </div>
               <div class="mt-2">
@@ -85,7 +85,7 @@
             </div>
             <div class="col">
               <div class="d-flex align-items-center">
-                <components:HeadsetLogo />
+                <components:HeadsetLogo className="fs-1" />
                 <div class="border border-1 border-black ms-2" style="width: 10rem; height: 0"></div>
               </div>
               <div class="mt-2">
