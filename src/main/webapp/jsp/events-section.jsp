@@ -2,7 +2,7 @@
   pageEncoding="UTF-8" %> 
 <%@taglib uri="/WEB-INF/tlds/components.tld" prefix="components" %>
 
-<section class="events bg-white">
+<section class="events bg-white" id="events">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col">

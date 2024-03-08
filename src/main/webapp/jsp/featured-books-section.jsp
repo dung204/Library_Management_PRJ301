@@ -2,7 +2,7 @@
   pageEncoding="UTF-8" %> 
 <%@taglib uri="/WEB-INF/tlds/components.tld" prefix="components" %>
 
-<section class="featured-books">
+<section class="featured-books" id="featured-books">
   <div class="container-fluid">
     <div class="row">
       <div class="featured-books-p-custom col-6 bg-primary">
