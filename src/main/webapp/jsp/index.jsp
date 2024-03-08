@@ -9,6 +9,7 @@
   <jsp:include page="about-us-section.jsp" />
   <jsp:include page="categories-section.jsp" />
   <jsp:include page="featured-books-section.jsp" />
+  <jsp:include page="events-section.jsp" />
 
   <jsp:include page="footer.jsp" />
 </layouts:Default>
