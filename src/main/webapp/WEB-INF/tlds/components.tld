@@ -153,4 +153,78 @@
       <required>false</required>
     </attribute>
   </tag>
+
+  <tag>
+    <name>FilterLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.FilterLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>ArrowDownLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.ArrowDownLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>ArrowLeftLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.ArrowLeftLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>ArrowRightLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.ArrowRightLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>DoubleArrowLeftLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.DoubleArrowLeftLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>DoubleArrowRightLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.DoubleArrowRightLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>PersonLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.PersonLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>InfoLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.InfoLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+
 </taglib>
