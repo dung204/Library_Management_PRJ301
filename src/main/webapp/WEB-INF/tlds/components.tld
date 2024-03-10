@@ -226,5 +226,12 @@
     </attribute>
   </tag>
 
-
+  <tag>
+    <name>HeartLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.HeartLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
 </taglib>
