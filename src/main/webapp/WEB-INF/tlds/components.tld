@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib>
+
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>2.0</jsp-version>
+
+  <tag>
+    <name>MainLogoDark</name>
+    <tag-class>com.books_maison.tag_handlers.components.MainLogoDarkTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>MainLogoLight</name>
+    <tag-class>com.books_maison.tag_handlers.components.MainLogoLightTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>SearchInput</name>
+    <tag-class>com.books_maison.tag_handlers.components.SearchInputTagHandler</tag-class>
+  </tag>
+
+  <tag>
+    <name>FacebookLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.FacebookLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>GoogleLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.GoogleLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>TwitterLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.TwitterLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>InstagramLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.InstagramLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>YoutubeLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.YoutubeLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>HouseLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.HouseLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>PhoneLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.PhoneLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>MailLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.MailLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>ArrowRepeatLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.ArrowRepeatLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>HeadsetLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.HeadsetLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>PatchCheckLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.PatchCheckLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>PersonBadgeLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.PersonBadgeLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>BankLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.BankLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>CurrencyLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.CurrencyLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>GlobeLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.GlobeLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>MusicNoteLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.MusicNoteLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>FilterLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.FilterLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>ArrowDownLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.ArrowDownLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>ArrowLeftLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.ArrowLeftLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>ArrowRightLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.ArrowRightLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>DoubleArrowLeftLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.DoubleArrowLeftLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>DoubleArrowRightLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.DoubleArrowRightLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>PersonLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.PersonLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>InfoLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.InfoLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>HeartLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.HeartLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>GenderLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.GenderLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>BookLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.BookLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>PersonLinesLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.PersonLinesLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>CalendarLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.CalendarLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>ClockLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.ClockLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+</taglib>
