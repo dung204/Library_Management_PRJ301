@@ -4,7 +4,9 @@
 <%@taglib uri="/WEB-INF/tlds/layouts.tld" prefix="layouts" %>
 
 <layouts:Default title="Chi tiết cuốn sách">
-  <jsp:include page="/jsp/sections/header.jsp" />
+  <jsp:include page="/jsp/sections/header.jsp">
+    <jsp:param name="title" value="Chi tiết cuốn sách" />
+  </jsp:include>
   
   <jsp:include page="/jsp/sections/book-details-section.jsp" />
 

@@ -29,6 +29,15 @@
   </tag>
 
   <tag>
+    <name>GoogleLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.GoogleLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
     <name>TwitterLogo</name>
     <tag-class>com.books_maison.tag_handlers.components.TwitterLogoTagHandler</tag-class>
     <attribute>
@@ -229,6 +238,51 @@
   <tag>
     <name>HeartLogo</name>
     <tag-class>com.books_maison.tag_handlers.components.HeartLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>GenderLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.GenderLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>BookLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.BookLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>PersonLinesLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.PersonLinesLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>CalendarLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.CalendarLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>ClockLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.ClockLogoTagHandler</tag-class>
     <attribute>
       <name>className</name>
       <required>false</required>

@@ -4,7 +4,9 @@
 <%@taglib uri="/WEB-INF/tlds/layouts.tld" prefix="layouts" %>
 
 <layouts:Default title="Trang chủ">
-  <jsp:include page="/jsp/sections/header.jsp" />
+  <jsp:include page="/jsp/sections/header.jsp">
+    <jsp:param name="title" value="Hãy cùng khám phá kho tàng tri thức nhân loại với hơn 362.832 đầu sách tại nơi đây" />
+  </jsp:include>
   
   <jsp:include page="/jsp/sections/about-us-section.jsp" />
   <jsp:include page="/jsp/sections/categories-section.jsp" />

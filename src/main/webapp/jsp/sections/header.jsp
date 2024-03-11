@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
   pageEncoding="UTF-8" %> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="/WEB-INF/tlds/components.tld" prefix="components" %>
 
 <div class="nav-container fixed-top py-1">
@@ -25,10 +26,10 @@
             <a href="/#events" class="text-decoration-none text-white">Sự kiện</a>
           </div>
           <div class="col-auto">
-            <a href="/search" class="text-decoration-none text-white">Tìm kiếm</a>
+            <a href="/search?type=book" class="text-decoration-none text-white">Tìm kiếm</a>
           </div>
           <div class="col-auto">
-            <button type="button" class="col btn btn-primary">Đăng nhập/đăng ký</button>
+            <button type="button" class="col btn btn-primary" data-bs-toggle="modal" data-bs-target="#login-modal">Đăng nhập/đăng ký</button>
           </div>
         </div>
       </div>
@@ -36,11 +37,14 @@
   </nav>
 </div>
 
+<jsp:include page="/jsp/sections/login-popup.jsp" />
+<jsp:include page="/jsp/sections/register-popup.jsp" />
+
 <header class="py-5">
   <section class="container">
     <div class="row justify-content-center mt-5 pt-5">
       <div class="col-8">
-        <h1 class="text-center text-white fw-bolder">Hãy cùng khám phá kho tàng tri thức nhân loại với hơn 362.832 đầu sách tại nơi đây</h1>
+        <h1 class="text-center text-white fw-bolder">${param.title}</h1>
         <div class="row justify-content-center mt-4">
           <div class="col-6">
             <hr class="border border-1" />
@@ -50,13 +54,16 @@
     </div>
   </section>
   <section class="container my-5">
-    <div class="row justify-content-center">
-      <div class="col-5">
-        <components:SearchInput />
+    <c:if test="${requestScope['jakarta.servlet.forward.request_uri'] == '/'}">
+      <div class="row justify-content-center">
+        <div class="col-5">
+          <components:SearchInput />
+        </div>
       </div>
-    </div>
+    </c:if>
   </section>
 </header>
+
 
 <script>
   document.querySelector('header').style.marginTop = document.querySelector('.nav-container').offsetHeight + 'px'

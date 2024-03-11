@@ -31,10 +31,10 @@
       <div class="col-7">
         <div class="row gy-3">
           <div class="col-6 fs-3 fw-bold">
-            Thứ 7, 9/3/2024
+            <components:CalendarLogo /> Thứ 7, 9/3/2024
           </div>
           <div class="col-6 fs-3 fw-bold text-end">
-            14h00
+            <components:ClockLogo /> 14h00
           </div>
           <div class="col-12 border border-1 border-black rounded-3 p-3">
             <div class="row align-items-center">

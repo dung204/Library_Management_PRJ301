@@ -15,7 +15,7 @@ public class MainLogoDarkTagHandler extends TagSupport {
   public int doStartTag() throws JspException {
 
     try {
-      Scanner scanner = new Scanner(new File("src/main/webapp/images/books_maison_logo_dark.svg"));
+      Scanner scanner = new Scanner(new File("src/main/webapp/images/books-maison-logo-dark.svg"));
       while (scanner.hasNextLine()) {
         pageContext.getOut().print(scanner.nextLine());
       }
