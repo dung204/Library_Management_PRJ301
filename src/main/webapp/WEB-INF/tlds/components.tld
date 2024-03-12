@@ -297,4 +297,13 @@
       <required>false</required>
     </attribute>
   </tag>
+
+  <tag>
+    <name>ErrorLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.ErrorLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
 </taglib>

@@ -58,6 +58,6 @@ public class AuthController {
     }
 
     userService.createUser(registerDTO);
-    return "redirect:/auth/login";
+    return "redirect:/auth/login?register-success";
   }
 }

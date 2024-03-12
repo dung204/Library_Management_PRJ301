@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
   pageEncoding="UTF-8" %> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="/WEB-INF/tlds/components.tld" prefix="components" %>
 <%@taglib uri="/WEB-INF/tlds/layouts.tld" prefix="layouts" %>
 
@@ -14,7 +15,27 @@
           <div class="col-12 text-center">
             <h5>Đăng nhập vào Books Maison</h5>
           </div>
-          <div class="col-12 mt-5">
+          <c:if test="${param.error != null}">
+            <div class="col-12">
+              <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <div>
+                  <components:ErrorLogo className="me-2" />
+                  Email hoặc mật khẩu không đúng
+                </div>
+              </div>
+            </div>
+          </c:if>
+          <c:if test="${param['register-success'] != null}">
+            <div class="col-12">
+              <div class="alert alert-success d-flex align-items-center" role="alert">
+                <div>
+                  <components:PatchCheckLogo className="me-2" />
+                  Đăng ký tài khoản thành công
+                </div>
+              </div>
+            </div>
+          </c:if>
+          <div class="col-12 ${param.error != null || param['register-success'] != null ? '' : 'mt-5'}">
             <form action="/auth/login" method="POST">
               <div class="row gy-4">
                 <div class="col-12">
@@ -79,3 +100,7 @@
     background-repeat: no-repeat;
   }
 </style>
+
+<script>
+  console.log("${param.error != null}")
+</script>
