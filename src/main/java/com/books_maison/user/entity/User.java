@@ -55,6 +55,9 @@ public class User implements UserDetails {
   @Nationalized
   private String address;
 
+  @Column()
+  private String imageUrl;
+
   @Column(nullable = false)
   @CurrentTimestamp
   private LocalDateTime createdTimestamp;

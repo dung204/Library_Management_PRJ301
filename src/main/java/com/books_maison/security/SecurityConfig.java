@@ -24,6 +24,9 @@ public class SecurityConfig {
             .usernameParameter("email")
             .loginProcessingUrl("/auth/login")
             .defaultSuccessUrl("/"))
+        .logout(config -> config
+            .logoutUrl("/auth/logout")
+            .logoutSuccessUrl("/"))
         .build();
   }
 

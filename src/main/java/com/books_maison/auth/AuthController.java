@@ -9,11 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.books_maison.auth.dto.RegisterDTO;
 import com.books_maison.user.UserService;
-import com.books_maison.user.dto.CreateUserDTO;
 import com.books_maison.user.entity.User;
 
 import jakarta.validation.Valid;
