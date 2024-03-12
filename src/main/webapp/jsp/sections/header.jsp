@@ -29,17 +29,15 @@
             <a href="/search?type=book" class="text-decoration-none text-white">Tìm kiếm</a>
           </div>
           <div class="col-auto">
-            <button type="button" class="col btn btn-primary" data-bs-toggle="modal" data-bs-target="#login-modal">Đăng nhập/đăng ký</button>
+            <a href="/auth/login">
+              <button type="button" class="col btn btn-primary">Đăng nhập/đăng ký</button>
+            </a>
           </div>
         </div>
       </div>
     </div>
   </nav>
 </div>
-
-<jsp:include page="/jsp/sections/login-popup.jsp" />
-<jsp:include page="/jsp/sections/register-popup.jsp" />
-
 <header class="py-5">
   <section class="container">
     <div class="row justify-content-center mt-5 pt-5">

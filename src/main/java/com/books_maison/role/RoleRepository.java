@@ -7,5 +7,5 @@ import com.books_maison.role.entity.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
-
+  Role findByName(String name);
 }

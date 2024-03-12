@@ -15,8 +15,8 @@
             <h5>Đăng nhập vào Books Maison</h5>
           </div>
           <div class="col-12 mt-5">
-            <form action="">
-              <div class="row gy-5">
+            <form action="/login">
+              <div class="row gy-4">
                 <div class="col-12">
                   <label for="login-email" class="form-label">
                     Email <span class="text-danger">*</span>
