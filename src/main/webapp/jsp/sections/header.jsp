@@ -3,42 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="/WEB-INF/tlds/components.tld" prefix="components" %>
 
-<div class="nav-container fixed-top py-1">
-  <nav class="container">
-    <div class="row align-items-center">
-      <div class="col-3">
-        <a href="/">
-          <components:MainLogoLight />
-        </a>
-      </div>
-      <div class="col-9">
-        <div class="row gx-5 justify-content-end align-items-center">
-          <div class="col-auto">
-            <a href="/#about-us" class="text-decoration-none text-white">Về chúng tôi</a>
-          </div>
-          <div class="col-auto">
-            <a href="/#categories" class="text-decoration-none text-white">Thể loại</a>
-          </div>
-          <div class="col-auto">
-            <a href="/#featured-books" class="text-decoration-none text-white">Sách nổi bật</a>
-          </div>
-          <div class="col-auto">
-            <a href="/#events" class="text-decoration-none text-white">Sự kiện</a>
-          </div>
-          <div class="col-auto">
-            <a href="/search?type=book" class="text-decoration-none text-white">Tìm kiếm</a>
-          </div>
-          <div class="col-auto">
-            <button type="button" class="col btn btn-primary" data-bs-toggle="modal" data-bs-target="#login-modal">Đăng nhập/đăng ký</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-</div>
-
-<jsp:include page="/jsp/sections/login-popup.jsp" />
-<jsp:include page="/jsp/sections/register-popup.jsp" />
+<jsp:include page="navbar.jsp" />
 
 <header class="py-5">
   <section class="container">
