@@ -50,15 +50,21 @@
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end animate slideIn text-end">
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/user/me?tab=favourite-books">
                       Trang cá nhân
                       <components:PersonLogo />
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="/user/me?tab=renting-books">
                       Sách đang mượn
                       <components:BookLogo />
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/user/me?tab=favourite-books">
+                      Sách yêu thích
+                      <components:HeartLogo />
                     </a>
                   </li>
                   <li>

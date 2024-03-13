@@ -73,6 +73,10 @@ public class User implements UserDetails {
   @OneToMany(mappedBy = "id", targetEntity = Checkout.class)
   private List<Checkout> checkouts;
 
+  public String getFullName() {
+    return firstName + " " + lastName;
+  }
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return List.of(new SimpleGrantedAuthority(role.getName()));
