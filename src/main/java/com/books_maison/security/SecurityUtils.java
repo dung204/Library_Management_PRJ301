@@ -4,11 +4,13 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import com.books_maison.user.entity.User;
+
 public class SecurityUtils {
-  public static String getSessionUser() {
+  public static User getCurrentSessionUser() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     if (!(authentication instanceof AnonymousAuthenticationToken)) {
-      return authentication.getName();
+      return (User) authentication.getPrincipal();
     }
 
     return null;
