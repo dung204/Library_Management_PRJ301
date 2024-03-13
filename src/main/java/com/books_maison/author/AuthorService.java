@@ -18,8 +18,11 @@ public class AuthorService {
     return authorRepository.save(author);
   }
 
-  public Author getAuthor(String id) {
-    return authorRepository.findById(id).orElse(null);
+  public Author getAuthorById(String id) {
+    if (id == null)
+      throw new IllegalArgumentException("Author id cannot be null");
+
+    return authorRepository.findById(id).orElseThrow(() -> new RuntimeException("Author not found"));
   }
 
   public Author updateAuthor(Author author) {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
   pageEncoding="UTF-8" %> 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="/WEB-INF/tlds/components.tld" prefix="components" %>
 
 <section class="author-details bg-white py-5">
@@ -9,25 +10,35 @@
       <div class="col-3">
         <div class="row gy-3">
           <div class="col-12">
-            <div class="author-avatar rounded-pill bg-secondary" style="width: 18rem; height: 18rem"></div>
+            <div class="author-avatar rounded-pill bg-secondary shadow-lg border border-black border-2"></div>
           </div>
           <div class="col-12 mt-5">
-            <h3 class="fw-bolder">Tên tác giả</h3>
+            <h3 class="fw-bolder">${requestScope.author.name}</h3>
           </div>
           <div class="col-12">
             <div class="row align-items-center">
-              <div class="col-2">
-                <components:GenderLogo className="fs-3" />
+              <div class="col-2" title="Năm sinh">
+                <components:BirthdayCakeLogo className="fs-3" />
               </div>
-              <div class="col-10">Giới tính</div>
+              <div class="col-10">${requestScope.author.yearOfBirth}</div>
             </div>
           </div>
+          <c:if test="${requestScope.author.yearOfDeath != null}">
+            <div class="col-12">
+              <div class="row align-items-center">
+                <div class="col-2" title="Năm mất">
+                  <components:ChristianCrossLogo className="fs-3" />
+                </div>
+                <div class="col-10">${requestScope.author.yearOfDeath}</div>
+              </div>
+            </div>
+          </c:if>
           <div class="col-12">
             <div class="row align-items-center">
-              <div class="col-2">
+              <div class="col-2" title="Quốc tịch">
                 <components:GlobeLogo className="fs-3" />
               </div>
-              <div class="col-10">Quốc tịch</div>
+              <div class="col-10">${requestScope.author.nationality}</div>
             </div>
           </div>
         </div>
@@ -47,7 +58,7 @@
                 <jsp:param name="className" value="tab-item ${param.tab == 'book' ? 'tab-item-selected' : ''}" />
                 <jsp:param name="logoComponent" value="<i class='bi bi-book fs-4'></i>" />
                 <jsp:param name="itemName" value="Sách" />
-                <jsp:param name="itemCount" value="25" />
+                <jsp:param name="itemCount" value="${requestScope.author.getTotalBookCount()}" />
               </jsp:include>
               <hr class="border border-1 opacity-75">
             </div>
@@ -57,7 +68,7 @@
               <c:choose>
                 <c:when test="${param.tab == null}">
                   <div class="col-12">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint rerum, dolores ducimus exercitationem perspiciatis ut odio labore praesentium repellendus voluptas, eaque, quibusdam quisquam. Earum ab officia sed iure voluptatum rem laboriosam, adipisci aliquid repellendus quaerat! Culpa blanditiis nam modi. Quibusdam vel ullam expedita, dolor id cum dolorem rem itaque sunt laudantium commodi facilis, saepe aliquid obcaecati dignissimos esse voluptatem similique accusantium minima. A ad dolore quidem, ab eveniet ipsa veritatis fuga quaerat nisi et pariatur debitis sint laudantium doloremque culpa harum repellat quo doloribus. Tempore quo veritatis tenetur eum quam aliquam id obcaecati unde, mollitia qui odit doloribus iure ut provident quibusdam ea amet nobis recusandae quaerat temporibus rerum impedit maxime officiis. Sint itaque amet iure, assumenda minima atque vitae perspiciatis laboriosam ipsa eum deserunt sed similique earum, corporis aperiam illo voluptatem dolor necessitatibus tempore alias aliquam animi deleniti sit laudantium! At cupiditate adipisci quis perspiciatis recusandae amet tenetur quod consectetur hic voluptatem est dignissimos sit quisquam sed, inventore reprehenderit quos, dolorem eveniet. Velit officia, voluptas magni consequatur a, eum, nam distinctio molestiae magnam quisquam et perferendis odit aspernatur minus quas! Non perferendis voluptates laborum esse totam excepturi adipisci beatae, ullam sequi aut reiciendis eum expedita. Expedita, vero omnis? Odio.
+                    ${requestScope.author.biography}
                   </div>
                 </c:when>
                 <c:when test="${param.tab == 'book'}">
@@ -112,6 +123,15 @@
 </section>
 
 <style>
+  .author-avatar {
+    height: 18rem;
+    width: 18rem;
+    background-image: url('${requestScope.author.imageUrl}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
   .tab-item {
     cursor: pointer;
     transition: all 0.2s;

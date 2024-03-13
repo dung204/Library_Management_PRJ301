@@ -306,4 +306,22 @@
       <required>false</required>
     </attribute>
   </tag>
+
+  <tag>
+    <name>BirthdayCakeLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.BirthdayCakeLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>ChristianCrossLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.ChristianCrossLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
 </taglib>
