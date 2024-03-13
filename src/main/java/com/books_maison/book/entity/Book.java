@@ -3,6 +3,8 @@ package com.books_maison.book.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.hibernate.annotations.Nationalized;
+
 import com.books_maison.author.entity.Author;
 import com.books_maison.category.entity.Category;
 
@@ -33,12 +35,14 @@ public class Book {
   private String isbn;
 
   @Column(nullable = false)
+  @Nationalized
   private String title;
 
   @Column(nullable = false)
   private LocalDate publishedDate;
 
   @Column(nullable = false)
+  @Nationalized
   private String language;
 
   @Column()

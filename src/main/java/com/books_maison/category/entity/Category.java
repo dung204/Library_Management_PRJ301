@@ -1,5 +1,7 @@
 package com.books_maison.category.entity;
 
+import org.hibernate.annotations.Nationalized;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,5 +23,6 @@ public class Category {
   private String id;
 
   @Column(nullable = false)
+  @Nationalized
   private String name;
 }

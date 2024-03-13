@@ -2,6 +2,8 @@ package com.books_maison.author.entity;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.Nationalized;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,15 +25,18 @@ public class Author {
   private String id;
 
   @Column(nullable = false)
+  @Nationalized
   private String firstName;
 
   @Column(nullable = false)
+  @Nationalized
   private String lastName;
 
   @Column()
   private LocalDate dateOfBirth;
 
   @Column()
+  @Nationalized
   private String nationality;
 
   @Column()
