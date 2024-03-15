@@ -1,7 +1,6 @@
 package com.books_maison.fine.entity;
 
 import com.books_maison.checkout.entity.Checkout;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +20,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "fines")
 public class Fine {
+
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
@@ -34,5 +34,4 @@ public class Fine {
 
   @Transient
   private Double fineAmount;
-
 }

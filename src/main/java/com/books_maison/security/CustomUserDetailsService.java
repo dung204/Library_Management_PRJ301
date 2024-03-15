@@ -1,16 +1,15 @@
 package com.books_maison.security;
 
+import com.books_maison.user.UserRepository;
+import com.books_maison.user.entity.User;
 import java.util.Optional;
-
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.books_maison.user.UserRepository;
-import com.books_maison.user.entity.User;
-
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
+
   private UserRepository userRepository;
 
   public CustomUserDetailsService(UserRepository userRepository) {
@@ -23,5 +22,4 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     return user.orElseThrow(() -> new UsernameNotFoundException("User not found"));
   }
-
 }

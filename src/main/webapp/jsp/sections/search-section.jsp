@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
   pageEncoding="UTF-8" %> 
+<%@page import="java.util.Arrays" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="/WEB-INF/tlds/components.tld" prefix="components" %>
 
@@ -15,45 +16,35 @@
           Thể loại
         </p>
         <hr class="border border-1 border-black" />
-        <div class="row gy-3">
-          <div class="col-12">
-            <div class="form-check">
-              <input type="checkbox" name="" id="music-and-art" class="form-check-input">
-              <label for="music-and-art" class="form-check-label">Âm nhạc và nghệ thuật</label>
+        <form action="" id="categories-filter">
+          <div class="row gy-3">
+            <c:forEach items="${requestScope.categories}" var="category">
+              <div class="col-12">
+                <div class="form-check">
+                  <input type="checkbox" id="${category.id}" class="form-check-input" 
+                  ${paramValues.category != null && Arrays.binarySearch(paramValues.category, category.id) >= 0 ? 'checked' : ''}>
+                  <label for="${category.id}" class="form-check-label">${category.name}</label>
+                </div>
+              </div>
+            </c:forEach>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Áp dụng</button>
             </div>
           </div>
-          <div class="col-12">
-            <div class="form-check">
-              <input type="checkbox" name="" id="tech" class="form-check-input">
-              <label for="tech" class="form-check-label">Công nghệ</label>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="form-check">
-              <input type="checkbox" name="" id="politics" class="form-check-input">
-              <label for="politics" class="form-check-label">Chính trị</label>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="form-check">
-              <input type="checkbox" name="" id="economy" class="form-check-input">
-              <label for="economy" class="form-check-label">Kinh tế</label>
-            </div>
-          </div>
-        </div>
-        <p class="fs-5 fw-bold mt-4">
-          Đánh giá
-        </p>
-        <hr class="border border-1 border-secondary" />
+        </form>
       </div>
       <div class="col-10 ps-5">
         <div class="row gy-4">
           <div class="col-12">
-            <components:SearchInput />
+            <form action="" id="search-keyword-form">
+              <components:SearchInput />
+            </form>
           </div>
-          <div class="col-12">
-            Đang hiện kết quả cho từ khóa: <span class="fw-bold">"Hello world"</span>
-          </div>
+          <c:if test="${param.query != null && !param.query.isEmpty()}">
+            <div class="col-12">
+              Đang hiện kết quả cho từ khóa: <span class="fw-bold">"${param.query}"</span>
+            </div>
+          </c:if>
           <div class="col-12">
             <div class="row gx-5">
               <jsp:include page="/jsp/others/tab-item.jsp">
@@ -61,14 +52,14 @@
                 <jsp:param name="className" value="result-type-item ${param.type == 'book' ? 'result-type-item-selected' : ''}" />
                 <jsp:param name="logoComponent" value="<i class='bi bi-book fs-4'></i>" />
                 <jsp:param name="itemName" value="Sách" />
-                <jsp:param name="itemCount" value="25" />
+                <jsp:param name="itemCount" value="${requestScope.paginatedBooks != null ? requestScope.paginatedBooks.getContent().size() : requestScope.totalBookCount()}" />
               </jsp:include>
               <jsp:include page="/jsp/others/tab-item.jsp">
                 <jsp:param name="url" value="/search?type=author" />
                 <jsp:param name="className" value="result-type-item ${param.type == 'author' ? 'result-type-item-selected' : ''}" />
                 <jsp:param name="logoComponent" value="<i class='bi bi-person fs-4'></i>" />
                 <jsp:param name="itemName" value="Tác giả" />
-                <jsp:param name="itemCount" value="4" />
+                <jsp:param name="itemCount" value="${requestScope.totalAuthorCount}" />
               </jsp:include>
               <hr class="border border-1 opacity-75">
             </div>
@@ -77,46 +68,25 @@
             <div class="row justify-content-around gy-5">
               <c:choose>
                 <c:when test="${param.type == 'book'}">
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
+                  <c:forEach items="${requestScope.paginatedBooks.getContent()}" var="book">
+                    <jsp:include page="/jsp/others/book-search-item.jsp">
+                      <jsp:param name="bookId" value="${book.id}" />
+                      <jsp:param name="bookName" value="${book.title}" />
+                      <jsp:param name="bookImage" value="${book.imageUrl}" />
+                      <jsp:param name="firstAuthorName" value="${book.authors[0].name}" />
+                      <jsp:param name="description" value="${book.description}" />
+                    </jsp:include>
+                  </c:forEach>
+                  <div class="col-12">
+                    <div class="row justify-content-end mt-5">
+                      <div class="col-auto">
+                        <jsp:include page="/jsp/others/pagination.jsp">
+                          <jsp:param name="currentPage" value="${requestScope.paginatedBooks.getNumber()}" />
+                          <jsp:param name="totalPages" value="${requestScope.paginatedBooks.getTotalPages()}" />
+                        </jsp:include>
+                      </div>
+                    </div>
+                  </div>
                 </c:when>
                 <c:when test="${param.type == 'author'}">
                   <jsp:include page="/jsp/others/author-search-item.jsp">
@@ -167,18 +137,18 @@
                   <jsp:include page="/jsp/others/author-search-item.jsp">
                     <jsp:param name="authorName" value="Tên tác giả" />
                   </jsp:include>
+                  <div class="col-12">
+                    <div class="row justify-content-end mt-5">
+                      <div class="col-auto">
+                        <jsp:include page="/jsp/others/pagination.jsp">
+                          <jsp:param name="currentPage" value="2" />
+                          <jsp:param name="totalPages" value="6" />
+                        </jsp:include>
+                      </div>
+                    </div>
+                  </div>
                 </c:when>
               </c:choose>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="row justify-content-end mt-5">
-              <div class="col-auto">
-                <jsp:include page="/jsp/others/pagination.jsp">
-                  <jsp:param name="currentPage" value="2" />
-                  <jsp:param name="totalPages" value="6" />
-                </jsp:include>
-              </div>
             </div>
           </div>
         </div>
@@ -198,3 +168,45 @@
     background-color: #e3e1e1;
   }
 </style>
+
+<script>
+  let thisURL;
+
+  document.querySelector('#categories-filter').onsubmit = (e) => {
+    e.preventDefault();
+
+    thisURL = new URL(location.href);
+    const checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+    if (thisURL.searchParams.has('page')) {
+      thisURL.searchParams.delete('page');
+      thisURL.searchParams.append('page', '1');
+    }
+
+    thisURL.searchParams.delete('category')
+
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        thisURL.searchParams.append('category', checkbox.id);
+      }
+    })
+
+    location.href = thisURL.href;
+  }
+
+  document.querySelector('#search-keyword-form').onsubmit = (e) => {
+    e.preventDefault();
+    thisURL = new URL(location.href);
+    const searchInputValue = document.querySelector('#search-keyword-form input').value.trim()
+
+    thisURL.searchParams.delete('query')
+    thisURL.searchParams.delete('page')
+
+    thisURL.searchParams.append('page', '1');
+    
+    if (searchInputValue !== '')
+      thisURL.searchParams.append('query', searchInputValue)
+
+    location.href = thisURL.href
+  }
+</script>

@@ -1,9 +1,11 @@
 package com.books_maison.user;
 
+import com.books_maison.security.SecurityUtils;
+import com.books_maison.user.dto.UpdateUserDTO;
+import com.books_maison.user.entity.User;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Optional;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,13 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.books_maison.security.SecurityUtils;
-import com.books_maison.user.dto.UpdateUserDTO;
-import com.books_maison.user.entity.User;
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
   private final UserService userService;
 
   public UserController(UserService userService) {
@@ -44,9 +43,10 @@ public class UserController {
   @SuppressWarnings("null")
   @PostMapping("/me/edit")
   public String editCurrentUser(
-      @ModelAttribute("editInfoForm") UpdateUserDTO updateUserDTO,
-      BindingResult bindingResult,
-      Model model) {
+    @ModelAttribute("editInfoForm") UpdateUserDTO updateUserDTO,
+    BindingResult bindingResult,
+    Model model
+  ) {
     User currentUser = SecurityUtils.getCurrentSessionUser();
 
     if (currentUser == null) {
@@ -60,16 +60,20 @@ public class UserController {
       }
     }
 
-    if (!updateUserDTO.getPassword().equals(currentUser.getPassword())
-        && !updateUserDTO.getPassword().equals(updateUserDTO.getConfirmPassword())) {
+    if (
+      !updateUserDTO.getPassword().equals(currentUser.getPassword()) &&
+      !updateUserDTO.getPassword().equals(updateUserDTO.getConfirmPassword())
+    ) {
       bindingResult.rejectValue("confirmPassword", "UpdateError", "Mật khẩu xác thực không khớp");
     }
 
     if (bindingResult.hasErrors()) {
-      bindingResult.getFieldErrors().forEach(error -> {
-        model.addAttribute("%sErrorMessage".formatted(error.getField()), error.getDefaultMessage());
-        model.addAttribute("%sRejectedValue".formatted(error.getField()), error.getRejectedValue());
-      });
+      bindingResult
+        .getFieldErrors()
+        .forEach(error -> {
+          model.addAttribute("%sErrorMessage".formatted(error.getField()), error.getDefaultMessage());
+          model.addAttribute("%sRejectedValue".formatted(error.getField()), error.getRejectedValue());
+        });
       return "pages/user-details";
     }
 

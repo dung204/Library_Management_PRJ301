@@ -1,19 +1,7 @@
 package com.books_maison.user.entity;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.List;
-
-import org.hibernate.annotations.CurrentTimestamp;
-import org.hibernate.annotations.Nationalized;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import com.books_maison.checkout.entity.Checkout;
 import com.books_maison.role.entity.Role;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,9 +11,18 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CurrentTimestamp;
+import org.hibernate.annotations.Nationalized;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Data
 @AllArgsConstructor
@@ -33,6 +30,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
+
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
@@ -51,11 +49,11 @@ public class User implements UserDetails {
   @Nationalized
   private String lastName;
 
-  @Column()
+  @Column
   @Nationalized
   private String address;
 
-  @Column()
+  @Column
   private String imageUrl;
 
   @Column(nullable = false)

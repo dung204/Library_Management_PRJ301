@@ -1,33 +1,23 @@
 package com.books_maison.category;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.books_maison.category.entity.Category;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CategoryService {
+
   private CategoryRepository categoryRepository;
 
   public CategoryService(CategoryRepository categoryRepository) {
     this.categoryRepository = categoryRepository;
   }
 
-  public Category createCategory(Category category) {
-    return categoryRepository.save(category);
-  }
+  public Optional<Category> getCategoryById(String id) {
+    if (id == null || id.isEmpty()) throw new IllegalArgumentException("Id cannot be null or empty");
 
-  public Category getCategory(String id) {
-    return categoryRepository.findById(id).orElse(null);
-  }
-
-  public Category updateCategory(Category category) {
-    return categoryRepository.save(category);
-  }
-
-  public void deleteCategory(String id) {
-    categoryRepository.deleteById(id);
+    return categoryRepository.findById(id);
   }
 
   public List<Category> getAllCategories() {

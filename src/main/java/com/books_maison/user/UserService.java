@@ -1,24 +1,22 @@
 package com.books_maison.user;
 
-import java.util.Optional;
-
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import com.books_maison.role.RoleRepository;
 import com.books_maison.user.dto.CreateUserDTO;
 import com.books_maison.user.dto.UpdateUserDTO;
 import com.books_maison.user.entity.User;
+import java.util.Optional;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+
   private final UserRepository userRepository;
   private final RoleRepository roleRepository;
   private final PasswordEncoder passwordEncoder;
 
-  public UserService(UserRepository userRepository, RoleRepository roleRepository,
-      PasswordEncoder passwordEncoder) {
+  public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
     this.userRepository = userRepository;
     this.roleRepository = roleRepository;
     this.passwordEncoder = passwordEncoder;
@@ -40,16 +38,14 @@ public class UserService {
   }
 
   public User updateUser(String id, UpdateUserDTO updateUserDTO) {
-    if (id == null || id.trim().isEmpty())
-      throw new IllegalArgumentException("Invalid user id");
+    if (id == null || id.trim().isEmpty()) throw new IllegalArgumentException("Invalid user id");
 
     User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     return updateUser(user, updateUserDTO);
   }
 
   public User updateUser(User user, UpdateUserDTO updateUserDTO) {
-    if (user == null)
-      throw new IllegalArgumentException("Invalid user data");
+    if (user == null) throw new IllegalArgumentException("Invalid user data");
 
     String newEmail = updateUserDTO.getEmail();
     String newPassword = updateUserDTO.getPassword();
@@ -57,20 +53,17 @@ public class UserService {
     String newLastName = updateUserDTO.getLastName();
     String newAddress = updateUserDTO.getAddress();
 
-    if (newEmail != null && !newEmail.trim().equals(user.getEmail()))
-      user.setEmail(newEmail);
+    if (newEmail != null && !newEmail.trim().equals(user.getEmail())) user.setEmail(newEmail);
 
-    if (newPassword != null && !newPassword.trim().equals(user.getPassword()))
-      user.setPassword(passwordEncoder.encode(newPassword));
+    if (newPassword != null && !newPassword.trim().equals(user.getPassword())) user.setPassword(
+      passwordEncoder.encode(newPassword)
+    );
 
-    if (newFirstName != null && !newFirstName.trim().equals(user.getFirstName()))
-      user.setFirstName(newFirstName);
+    if (newFirstName != null && !newFirstName.trim().equals(user.getFirstName())) user.setFirstName(newFirstName);
 
-    if (newLastName != null && !newLastName.trim().equals(user.getLastName()))
-      user.setLastName(newLastName);
+    if (newLastName != null && !newLastName.trim().equals(user.getLastName())) user.setLastName(newLastName);
 
-    if (newAddress != null && !newAddress.trim().equals(user.getAddress()))
-      user.setAddress(newAddress);
+    if (newAddress != null && !newAddress.trim().equals(user.getAddress())) user.setAddress(newAddress);
 
     return userRepository.save(user);
   }

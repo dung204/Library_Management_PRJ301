@@ -6,64 +6,28 @@
 <div class="custom-pagination">
   <div class="row align-items-center">
     <div class="col-auto">
-      <components:DoubleArrowLeftLogo className="custom-pagination-item rounded-pill fs-4 py-2 px-3" />
+      Page:
     </div>
     <div class="col-auto">
-      <components:ArrowLeftLogo className="custom-pagination-item rounded-pill fs-4 py-2 px-3" />
-    </div>
-
-    <c:forEach 
-      var="i" 
-      begin="${
-        param.currentPage != 2 && param.currentPage >= param.totalPages - 4 
-        && param.currentPage <= param.totalPages + 0
-        ? param.totalPages - 4
-        : param.currentPage - 2 <= 0 
-          ? 1 
-          : param.currentPage - 2
-      }" 
-      end="${
-        param.currentPage >= 1 && param.currentPage <= 3
-          ? 5
-          : param.currentPage + 2 > param.totalPages
-            ? param.totalPages
-            : param.currentPage + 2
-      }"
-    >
-      <div class="col-auto">
-        <c:choose>
-          <c:when test="${param.currentPage == i}">
-            <span class="custom-pagination-item fs-5 py-2 px-3 rounded-pill bg-primary text-white">${i}</span>
-          </c:when>
-
-          <c:otherwise>
-            <span class="custom-pagination-item rounded-pill fs-5 py-2 px-3 rounded-pill">${i}</span>
-          </c:otherwise>
-        </c:choose>
-      </div>
-    </c:forEach>
-
-    <div class="col-auto">
-      <components:ArrowRightLogo className="custom-pagination-item rounded-pill fs-4 py-2 px-3" />
-    </div>
-    <div class="col-auto">
-      <components:DoubleArrowRightLogo className="custom-pagination-item rounded-pill fs-4 py-2 px-3" />
+      <select class="pagination-select form-select">
+        <c:forEach begin="1" end="${param.totalPages}" var="page">
+          <option value="${page}" ${page == param.currentPage ? 'selected' : ''}>${page}</option>
+        </c:forEach>
+      </select>
     </div>
   </div>
 </div>
 
 <style>
-  .custom-pagination-item {
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .custom-pagination-item:not(:has(.bg-primary)):hover {
-    background-color: var(--bs-secondary);
-    color: white;
-  }
-
-  .col-auto:has(> .custom-pagination-item) {
-    padding-inline: 0.2rem !important;
-  }
 </style>
+
+<script>
+  const paginationSelect = document.querySelector('.pagination-select');
+
+  paginationSelect.onchange = () => {
+    const currentURL = new URL(location.href);
+    currentURL.searchParams.delete('page');
+    currentURL.searchParams.append('page', paginationSelect.value);
+    location.href = currentURL.href;
+  }
+</script>

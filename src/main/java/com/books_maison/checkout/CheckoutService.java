@@ -1,13 +1,12 @@
 package com.books_maison.checkout;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.books_maison.checkout.entity.Checkout;
+import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CheckoutService {
+
   private CheckoutRepository checkoutRepository;
 
   public CheckoutService(CheckoutRepository checkoutRepository) {
