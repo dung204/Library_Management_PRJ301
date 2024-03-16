@@ -44,4 +44,17 @@ public interface BookRepository extends JpaRepository<Book, String> {
     @Param("title") String title,
     @Param("categoryIds") List<String> categoryIds
   );
+
+  @Query(
+    value = "SELECT b.* FROM books b " +
+    "INNER JOIN books_authors ba " +
+    "ON b.id = ba.book_id " +
+    "WHERE ba.author_id = :authorId",
+    countQuery = "SELECT COUNT(*) FROM books b " +
+    "INNER JOIN books_authors ba " +
+    "ON b.id = ba.book_id " +
+    "WHERE ba.author_id = :authorId",
+    nativeQuery = true
+  )
+  Page<Book> findByAuthorId(Pageable pageable, @Param("authorId") String authorId);
 }

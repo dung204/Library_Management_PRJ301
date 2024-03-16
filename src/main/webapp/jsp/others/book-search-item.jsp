@@ -11,7 +11,7 @@
           ${param.bookName}
         </div>
         <div class="col-12">
-          <components:PersonLogo />: ${param.firstAuthorName}
+          <components:PersonLogo />: <a href="/author/${param.firstAuthorId}" title="Chi tiết tác giả ${param.firstAuthorName}">${param.firstAuthorName}</a>
         </div>
         <div class="col-12">
           <components:InfoLogo /> Mô tả:

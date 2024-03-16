@@ -1,5 +1,6 @@
 package com.books_maison.book;
 
+import com.books_maison.author.entity.Author;
 import com.books_maison.book.entity.Book;
 import java.util.List;
 import org.springframework.data.domain.Page;
@@ -54,6 +55,13 @@ public class BookService {
     if (categoryIdsAreNullOrEmpty && keywordIsNull) return getPaginatedBooks(pageable);
 
     return bookRepository.findByTitleContainingIgnoreCaseAndCategoryIdsIn(pageable, keyword, categoryIds);
+  }
+
+  public Page<Book> getPaginatedBooksByAuthorId(Pageable pageable, String authorId) {
+    if (pageable == null) throw new IllegalArgumentException("Pageable is required");
+    if (authorId == null || authorId.isEmpty()) throw new IllegalArgumentException("Author id is required");
+
+    return bookRepository.findByAuthorId(pageable, authorId);
   }
 
   public Long getTotalBookCount() {

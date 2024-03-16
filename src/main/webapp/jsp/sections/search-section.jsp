@@ -73,6 +73,7 @@
                       <jsp:param name="bookId" value="${book.id}" />
                       <jsp:param name="bookName" value="${book.title}" />
                       <jsp:param name="bookImage" value="${book.imageUrl}" />
+                      <jsp:param name="firstAuthorId" value="${book.authors[0].id}" />                      
                       <jsp:param name="firstAuthorName" value="${book.authors[0].name}" />
                       <jsp:param name="description" value="${book.description}" />
                     </jsp:include>
@@ -81,7 +82,7 @@
                     <div class="row justify-content-end mt-5">
                       <div class="col-auto">
                         <jsp:include page="/jsp/others/pagination.jsp">
-                          <jsp:param name="currentPage" value="${requestScope.paginatedBooks.getNumber()}" />
+                          <jsp:param name="currentPage" value="${requestScope.paginatedBooks.getNumber() + 1}" />
                           <jsp:param name="totalPages" value="${requestScope.paginatedBooks.getTotalPages()}" />
                         </jsp:include>
                       </div>

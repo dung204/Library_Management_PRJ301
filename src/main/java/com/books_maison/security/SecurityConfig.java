@@ -19,13 +19,7 @@ public class SecurityConfig {
       .authorizeHttpRequests(
         authorize -> authorize.requestMatchers("/user/**").authenticated().requestMatchers("/**").permitAll()
       )
-      .formLogin(
-        config ->
-          config
-            .loginPage("/auth/login")
-            .usernameParameter("email")
-            .loginProcessingUrl("/auth/login")
-      )
+      .formLogin(config -> config.loginPage("/auth/login").usernameParameter("email").loginProcessingUrl("/auth/login"))
       .logout(config -> config.logoutUrl("/auth/logout").logoutSuccessUrl("/"))
       .build();
   }
