@@ -12,14 +12,26 @@
           <div class="book-image col-12 bg-secondary border border-1 border-black" style="height: 35rem"></div>
           <div class="col-12 text-center pt-4">Số lượng cuốn sách còn trống: <span class="fw-bold">10</span></div>
           <sec:authorize access="isAuthenticated()">
-            <div class="col-4 text-center">
+            <div class="col-6 text-center">
               <button class="btn btn-primary">Đặt mượn</button>
             </div>
-            <div class="col-4 text-center">
-              <button class="btn btn-danger">
-                <components:HeartLogo />
-                Yêu thích
-              </button>
+            <div class="col-6 text-center">
+                <c:if test="${!requestScope.userHasFavouredBook}">
+                  <form action="/user/me/add-favourite-book?book-id=${requestScope.book.id}" method="POST">
+                    <button type="submit" class="btn btn-danger">
+                      <components:HeartLogo />
+                      Yêu thích
+                    </button>
+                  </form>
+                </c:if>
+                <c:if test="${requestScope.userHasFavouredBook}">
+                  <form action="/user/me/remove-favourite-book?book-id=${requestScope.book.id}" method="POST">
+                    <button type="submit" class="btn btn-outline-danger">
+                      <components:HeartLogo />
+                      Bỏ yêu thích
+                    </button>
+                  </form>
+                </c:if>
             </div>
           </sec:authorize>
           <sec:authorize access="!isAuthenticated()">

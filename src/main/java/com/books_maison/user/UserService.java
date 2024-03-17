@@ -4,22 +4,32 @@ import com.books_maison.role.RoleRepository;
 import com.books_maison.user.dto.CreateUserDTO;
 import com.books_maison.user.dto.UpdateUserDTO;
 import com.books_maison.user.entity.User;
+import com.books_maison.user_favourite_book.UserFavouriteBookService;
+import jakarta.transaction.Transactional;
 import java.util.Optional;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class UserService {
 
   private final UserRepository userRepository;
   private final RoleRepository roleRepository;
+  private final UserFavouriteBookService userFavouriteBookService;
   private final PasswordEncoder passwordEncoder;
 
-  public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+  public UserService(
+    UserRepository userRepository,
+    RoleRepository roleRepository,
+    UserFavouriteBookService userFavouriteBookService,
+    PasswordEncoder passwordEncoder
+  ) {
     this.userRepository = userRepository;
     this.roleRepository = roleRepository;
     this.passwordEncoder = passwordEncoder;
+    this.userFavouriteBookService = userFavouriteBookService;
   }
 
   public User createUser(CreateUserDTO createUserDTO) {
@@ -66,5 +76,19 @@ public class UserService {
     if (newAddress != null && !newAddress.trim().equals(user.getAddress())) user.setAddress(newAddress);
 
     return userRepository.save(user);
+  }
+
+  public void addFavouriteBook(User currentUser, String bookId) {
+    if (currentUser == null) throw new IllegalArgumentException("Invalid user data");
+    if (bookId == null || bookId.trim().isEmpty()) throw new IllegalArgumentException("Invalid book id");
+
+    userFavouriteBookService.addOne(currentUser.getId(), bookId);
+  }
+
+  public void removeFavouriteBook(User currentUser, String bookId) {
+    if (currentUser == null) throw new IllegalArgumentException("Invalid user data");
+    if (bookId == null || bookId.trim().isEmpty()) throw new IllegalArgumentException("Invalid book id");
+
+    userFavouriteBookService.removeOne(currentUser.getId(), bookId);
   }
 }

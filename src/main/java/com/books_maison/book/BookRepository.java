@@ -57,4 +57,10 @@ public interface BookRepository extends JpaRepository<Book, String> {
     nativeQuery = true
   )
   Page<Book> findByAuthorId(Pageable pageable, @Param("authorId") String authorId);
+
+  @Query(
+    value = "SELECT b FROM Book b JOIN FETCH b.userFavouriteBooks fb WHERE fb.userId = :userId",
+    countQuery = "SELECT COUNT(b) FROM Book b JOIN b.userFavouriteBooks fb WHERE fb.userId = :userId"
+  )
+  Page<Book> findFavouriteBooksByUserId(Pageable pageable, String userId);
 }

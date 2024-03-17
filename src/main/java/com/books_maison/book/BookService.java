@@ -1,13 +1,14 @@
 package com.books_maison.book;
 
-import com.books_maison.author.entity.Author;
 import com.books_maison.book.entity.Book;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class BookService {
 
   private BookRepository bookRepository;
@@ -62,6 +63,13 @@ public class BookService {
     if (authorId == null || authorId.isEmpty()) throw new IllegalArgumentException("Author id is required");
 
     return bookRepository.findByAuthorId(pageable, authorId);
+  }
+
+  public Page<Book> getPaginatedFavouriteBooksByUserId(Pageable pageable, String userId) {
+    if (pageable == null) throw new IllegalArgumentException("Pageable is required");
+    if (userId == null || userId.isEmpty()) throw new IllegalArgumentException("User id is required");
+
+    return bookRepository.findFavouriteBooksByUserId(pageable, userId);
   }
 
   public Long getTotalBookCount() {

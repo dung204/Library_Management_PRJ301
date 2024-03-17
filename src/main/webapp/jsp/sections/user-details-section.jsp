@@ -125,46 +125,26 @@
                   </jsp:include>
                 </c:when>
                 <c:when test="${param.tab == 'favourite-books'}">
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/book-search-item.jsp">
-                    <jsp:param name="bookName" value="Tên sách" />
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                    <jsp:param name="description" value="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias veniam provident eaque error vitae adipisci hic architecto sint, fugiat nemo." />
-                  </jsp:include>
+                  <c:forEach items="${requestScope.paginatedFavouriteBooks.getContent()}" var="book">
+                    <jsp:include page="/jsp/others/book-search-item.jsp">
+                      <jsp:param name="bookId" value="${book.id}" />
+                      <jsp:param name="bookName" value="${book.title}" />
+                      <jsp:param name="bookImage" value="${book.imageUrl}" />
+                      <jsp:param name="firstAuthorId" value="${book.authors[0].id}" />                      
+                      <jsp:param name="firstAuthorName" value="${book.authors[0].name}" />
+                      <jsp:param name="description" value="${book.description}" />
+                    </jsp:include>
+                  </c:forEach>
+                  <div class="col-12">
+                    <div class="row justify-content-end mt-5">
+                      <div class="col-auto">
+                        <jsp:include page="/jsp/others/pagination.jsp">
+                          <jsp:param name="currentPage" value="${requestScope.paginatedFavouriteBooks.getNumber() + 1}" />
+                          <jsp:param name="totalPages" value="${requestScope.paginatedFavouriteBooks.getTotalPages()}" />
+                        </jsp:include>
+                      </div>
+                    </div>
+                  </div>
                 </c:when>
                 <c:when test="${param.tab == 'fines'}">
                   <div class="col-12">
