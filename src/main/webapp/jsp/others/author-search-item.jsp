@@ -2,12 +2,23 @@
   pageEncoding="UTF-8" %> 
 <%@taglib uri="/WEB-INF/tlds/components.tld" prefix="components" %>
 
-<div class="col-auto">
-  <p>
-    <div class="rounded-pill bg-secondary p-5">
+<div class="col-2">
+  <a href="/author/${param.authorId}" title="Chi tiết tác giả ${param.authorName}">
+    <div class="row gy-3 justify-content-center">
+      <div class="col-12" style="display: flex; justify-content: center;">
+        <div class="author-avatar-${param.authorId} rounded-pill bg-secondary" style="width: 7rem; height: 7rem;"></div>
+      </div>
+      <div class="col-12 fw-bold text-center">
+        ${param.authorName}
+      </div>
     </div>
-  </p>
-  <p class="fw-bold text-center">
-    ${param.authorName}
-  </p>
+  </a>
 </div>
+
+<style>
+  .author-avatar-${param.authorId} {
+    background-image: url('${param.authorImageUrl}');
+    background-size: cover;
+    background-position: center;
+  }
+</style>

@@ -40,7 +40,7 @@ public class BookService {
 
     if (keyword == null) return getPaginatedBooks(pageable);
 
-    return bookRepository.findByTitleContainingIgnoreCase(pageable, keyword);
+    return bookRepository.findByAllCriteriaContainingIgnoreCase(pageable, keyword);
   }
 
   public Page<Book> getPaginatedBooks(Pageable pageable, List<String> categoryIds, String keyword) {
@@ -55,7 +55,7 @@ public class BookService {
 
     if (categoryIdsAreNullOrEmpty && keywordIsNull) return getPaginatedBooks(pageable);
 
-    return bookRepository.findByTitleContainingIgnoreCaseAndCategoryIdsIn(pageable, keyword, categoryIds);
+    return bookRepository.findByAllCriteriaContainingIgnoreCaseAndCategoryIdsIn(pageable, keyword, categoryIds);
   }
 
   public Page<Book> getPaginatedBooksByAuthorId(Pageable pageable, String authorId) {

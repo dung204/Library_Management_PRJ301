@@ -21,7 +21,7 @@
 </a>
 
 <style>
-  a.${param.className} {
+  .result-type-item {
     color: var(--bs-body-color);
     text-decoration: none;
   }

@@ -27,14 +27,13 @@ public class BookController {
     User currentUser = SecurityUtils.getCurrentSessionUser();
     Book book = bookService.getBookById(bookId);
 
-    if (currentUser == null) {
-      return "redirect:/auth/login";
+    if (currentUser != null) {
+      model.addAttribute(
+        "userHasFavouredBook",
+        userFavouriteBookService.userHasFavouredBook(currentUser.getId(), bookId)
+      );
     }
 
-    model.addAttribute(
-      "userHasFavouredBook",
-      userFavouriteBookService.userHasFavouredBook(currentUser.getId(), bookId)
-    );
     model.addAttribute("book", book);
 
     return "pages/book-details";

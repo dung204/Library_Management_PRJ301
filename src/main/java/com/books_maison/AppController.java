@@ -1,6 +1,7 @@
 package com.books_maison;
 
 import com.books_maison.author.AuthorService;
+import com.books_maison.author.entity.Author;
 import com.books_maison.book.BookService;
 import com.books_maison.book.entity.Book;
 import com.books_maison.category.CategoryService;
@@ -44,23 +45,29 @@ public class AppController {
     @RequestParam("query") Optional<String> query,
     Model model
   ) {
-    if (resultType.equals("book")) {
-      Pageable pageable = PageRequest.of(page.isPresent() ? page.get() - 1 : 0, 10).withSort(
-        Direction.fromString("DESC"),
-        categoryIds.isPresent() ? "published_year" : "publishedYear"
-      );
-
-      Page<Book> paginatedBooks = bookService.getPaginatedBooks(pageable, categoryIds.orElse(null), query.orElse(""));
-      model.addAttribute("paginatedBooks", paginatedBooks);
-    }
-
-    if (resultType.equals("author")) {
-      Pageable pageable = PageRequest.of(page.orElse(1), 10).withSort(Direction.fromString("DESC"), "name");
-    }
-
-    model.addAttribute("totalBookCount", bookService.getTotalBookCount());
-    model.addAttribute("totalAuthorCount", authorService.getTotalAuthorCount());
+    int pageNumber = page.orElse(1) - 1;
+    List<String> categoryIdsList = categoryIds.orElse(null);
+    String queryStr = query.orElse("");
+    
     model.addAttribute("categories", categoryService.getAllCategories());
+    
+    Pageable bookPageable = PageRequest.of(pageNumber, 10).withSort(
+      Direction.DESC,
+      "publishedYear"
+    );
+
+    Page<Book> paginatedBooks = bookService.getPaginatedBooks(bookPageable, categoryIdsList, queryStr);
+    model.addAttribute("paginatedBooks", paginatedBooks);
+    model.addAttribute("totalBookCount", paginatedBooks.getTotalElements());
+
+    Pageable authorPageable = PageRequest.of(pageNumber, 10).withSort(
+      Direction.DESC, 
+      "name"
+    );
+    Page<Author> paginatedAuthors = authorService.getPaginatedAuthors(authorPageable, categoryIdsList, queryStr);
+    model.addAttribute("paginatedAuthors", paginatedAuthors);
+    model.addAttribute("totalAuthorCount", paginatedAuthors.getTotalElements());
+    
     return "pages/search";
   }
 }

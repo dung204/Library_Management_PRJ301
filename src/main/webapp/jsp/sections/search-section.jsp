@@ -48,15 +48,14 @@
           <div class="col-12">
             <div class="row gx-5">
               <jsp:include page="/jsp/others/tab-item.jsp">
-                <jsp:param name="url" value="/search?type=book" />
-                <jsp:param name="className" value="result-type-item ${param.type == 'book' ? 'result-type-item-selected' : ''}" />
+                <jsp:param name="className" value="book-tab result-type-item ${param.type == 'book' ? 'result-type-item-selected' : ''}" />
                 <jsp:param name="logoComponent" value="<i class='bi bi-book fs-4'></i>" />
                 <jsp:param name="itemName" value="Sách" />
-                <jsp:param name="itemCount" value="${requestScope.paginatedBooks != null ? requestScope.paginatedBooks.getContent().size() : requestScope.totalBookCount()}" />
+                <jsp:param name="itemCount" value="${requestScope.totalBookCount}" />
               </jsp:include>
               <jsp:include page="/jsp/others/tab-item.jsp">
                 <jsp:param name="url" value="/search?type=author" />
-                <jsp:param name="className" value="result-type-item ${param.type == 'author' ? 'result-type-item-selected' : ''}" />
+                <jsp:param name="className" value="author-tab result-type-item ${param.type == 'author' ? 'result-type-item-selected' : ''}" />
                 <jsp:param name="logoComponent" value="<i class='bi bi-person fs-4'></i>" />
                 <jsp:param name="itemName" value="Tác giả" />
                 <jsp:param name="itemCount" value="${requestScope.totalAuthorCount}" />
@@ -90,60 +89,19 @@
                   </div>
                 </c:when>
                 <c:when test="${param.type == 'author'}">
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
-                  <jsp:include page="/jsp/others/author-search-item.jsp">
-                    <jsp:param name="authorName" value="Tên tác giả" />
-                  </jsp:include>
+                  <c:forEach items="${requestScope.paginatedAuthors.getContent()}" var="author">
+                    <jsp:include page="/jsp/others/author-search-item.jsp">
+                      <jsp:param name="authorId" value="${author.id}" />
+                      <jsp:param name="authorName" value="${author.name}" />
+                      <jsp:param name="authorImageUrl" value="${author.imageUrl}" />
+                    </jsp:include>
+                  </c:forEach>
                   <div class="col-12">
                     <div class="row justify-content-end mt-5">
                       <div class="col-auto">
                         <jsp:include page="/jsp/others/pagination.jsp">
-                          <jsp:param name="currentPage" value="2" />
-                          <jsp:param name="totalPages" value="6" />
+                          <jsp:param name="currentPage" value="${requestScope.paginatedAuthors.getNumber() + 1}" />
+                          <jsp:param name="totalPages" value="${requestScope.paginatedAuthors.getTotalPages()}" />
                         </jsp:include>
                       </div>
                     </div>
@@ -172,6 +130,7 @@
 
 <script>
   let thisURL;
+  const bookTab = document.querySelector('.book-tab');
 
   document.querySelector('#categories-filter').onsubmit = (e) => {
     e.preventDefault();
@@ -210,4 +169,10 @@
 
     location.href = thisURL.href
   }
+
+  
+  thisURL = new URL(location.href);
+  thisURL.searchParams.delete('page');
+  thisURL.searchParams.append('page', '1');
+  bookTab.href = thisURL.href;
 </script>
