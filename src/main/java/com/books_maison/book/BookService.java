@@ -72,8 +72,15 @@ public class BookService {
     return bookRepository.findFavouriteBooksByUserId(pageable, userId);
   }
 
-  public Long getTotalBookCount() {
-    return bookRepository.count();
+  public void decrementOneToQuantity(String bookId) {
+    if (bookId == null || bookId.isEmpty()) throw new IllegalArgumentException("Book id is required");
+
+    Book book = this.getBookById(bookId);
+    int quantity = book.getQuantity();
+    if (quantity == 0) throw new RuntimeException("The book is out of stock. Can not decrement one to quantity.");
+
+    book.setQuantity(quantity - 1);
+    bookRepository.save(book);
   }
 
   public Book getBookById(String id) {

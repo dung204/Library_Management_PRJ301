@@ -37,10 +37,7 @@ public class AuthorController {
     Author author = authorService.getAuthorById(id);
 
     if (tab.isPresent() && tab.get().equals("books")) {
-      Pageable pageable = PageRequest.of(pageNumber, 10).withSort(
-        Direction.fromString("DESC"),
-        "publishedYear"
-      );
+      Pageable pageable = PageRequest.of(pageNumber, 10).withSort(Direction.fromString("DESC"), "publishedYear");
 
       model.addAttribute("paginatedBooks", bookService.getPaginatedBooksByAuthorId(pageable, author.getId()));
     }

@@ -10,10 +10,18 @@
       <div class="col-4">
         <div class="row justify-content-center gy-3">
           <div class="book-image col-12 bg-secondary border border-1 border-black" style="height: 35rem"></div>
-          <div class="col-12 text-center pt-4">Số lượng cuốn sách còn trống: <span class="fw-bold">10</span></div>
+          <div class="col-12 text-center pt-4">Số lượng cuốn sách còn sẵn: <span class="fw-bold">${requestScope.book.quantity}</span></div>
           <sec:authorize access="isAuthenticated()">
             <div class="col-6 text-center">
-              <button class="btn btn-primary">Đặt mượn</button>
+              <c:if test="${!requestScope.userIsRentingThisBook}">
+                <button type="submit" class="btn btn-primary" ${requestScope.book.quantity == 0 ? 'disabled' : ''} data-bs-toggle="modal" data-bs-target="#confirm-renting-modal">Đặt mượn</button>
+                <jsp:include page="/jsp/others/confirm-renting-modal.jsp">
+                  <jsp:param name="bookId" value="${requestScope.bookId}" />
+                </jsp:include>
+              </c:if>
+              <c:if test="${requestScope.userIsRentingThisBook}">
+                <button type="submit" class="btn btn-outline-primary" disabled>Đã đặt mượn</button>
+              </c:if>
             </div>
             <div class="col-6 text-center">
                 <c:if test="${!requestScope.userHasFavouredBook}">

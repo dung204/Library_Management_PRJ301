@@ -48,26 +48,20 @@ public class AppController {
     int pageNumber = page.orElse(1) - 1;
     List<String> categoryIdsList = categoryIds.orElse(null);
     String queryStr = query.orElse("");
-    
+
     model.addAttribute("categories", categoryService.getAllCategories());
-    
-    Pageable bookPageable = PageRequest.of(pageNumber, 10).withSort(
-      Direction.DESC,
-      "publishedYear"
-    );
+
+    Pageable bookPageable = PageRequest.of(pageNumber, 10).withSort(Direction.DESC, "publishedYear");
 
     Page<Book> paginatedBooks = bookService.getPaginatedBooks(bookPageable, categoryIdsList, queryStr);
     model.addAttribute("paginatedBooks", paginatedBooks);
     model.addAttribute("totalBookCount", paginatedBooks.getTotalElements());
 
-    Pageable authorPageable = PageRequest.of(pageNumber, 10).withSort(
-      Direction.DESC, 
-      "name"
-    );
+    Pageable authorPageable = PageRequest.of(pageNumber, 10).withSort(Direction.DESC, "name");
     Page<Author> paginatedAuthors = authorService.getPaginatedAuthors(authorPageable, categoryIdsList, queryStr);
     model.addAttribute("paginatedAuthors", paginatedAuthors);
     model.addAttribute("totalAuthorCount", paginatedAuthors.getTotalElements());
-    
+
     return "pages/search";
   }
 }

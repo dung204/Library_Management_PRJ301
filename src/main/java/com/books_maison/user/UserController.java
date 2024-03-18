@@ -1,6 +1,7 @@
 package com.books_maison.user;
 
 import com.books_maison.book.BookService;
+import com.books_maison.checkout.CheckoutService;
 import com.books_maison.security.SecurityUtils;
 import com.books_maison.user.dto.UpdateUserDTO;
 import com.books_maison.user.entity.User;
@@ -25,10 +26,12 @@ public class UserController {
 
   private final UserService userService;
   private final BookService bookService;
+  private final CheckoutService checkoutService;
 
-  public UserController(UserService userService, BookService bookService) {
+  public UserController(UserService userService, BookService bookService, CheckoutService checkoutService) {
     this.userService = userService;
     this.bookService = bookService;
+    this.checkoutService = checkoutService;
   }
 
   @GetMapping("/me/**")
@@ -38,6 +41,8 @@ public class UserController {
     Model model
   ) {
     User currentUser = SecurityUtils.getCurrentSessionUser();
+    int pageNumber = page.orElse(1) - 1;
+    int pageSize = 10;
 
     if (currentUser == null) {
       return "redirect:/auth/login";
@@ -45,17 +50,17 @@ public class UserController {
 
     Date createdDate = Date.from(currentUser.getCreatedTimestamp().atZone(ZoneId.systemDefault()).toInstant());
 
-    if (tab.equals("favourite-books")) {
-      Pageable pageable = PageRequest.of(page.isPresent() ? page.get() - 1 : 0, 10).withSort(
-        Direction.DESC,
-        "publishedYear"
-      );
+    Pageable favouriteBooksPageable = PageRequest.of(pageNumber, pageSize).withSort(Direction.DESC, "publishedYear");
+    model.addAttribute(
+      "paginatedFavouriteBooks",
+      bookService.getPaginatedFavouriteBooksByUserId(favouriteBooksPageable, currentUser.getId())
+    );
 
-      model.addAttribute(
-        "paginatedFavouriteBooks",
-        bookService.getPaginatedFavouriteBooksByUserId(pageable, currentUser.getId())
-      );
-    }
+    Pageable checkoutsPageable = PageRequest.of(pageNumber, pageSize).withSort(Direction.DESC, "checkoutTimestamp");
+    model.addAttribute(
+      "paginatedCheckouts",
+      checkoutService.getPaginatedCheckoutsByUserId(checkoutsPageable, currentUser.getId())
+    );
 
     model.addAttribute("user", currentUser);
     model.addAttribute("createdDate", createdDate);

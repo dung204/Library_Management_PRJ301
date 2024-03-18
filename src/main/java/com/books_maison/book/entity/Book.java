@@ -60,9 +60,6 @@ public class Book {
   @Column(columnDefinition = "NTEXT")
   private String description;
 
-  @OneToMany(mappedBy = "bookId", targetEntity = UserFavouriteBook.class)
-  private List<UserFavouriteBook> userFavouriteBooks;
-
   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinTable(
     name = "books_authors",
@@ -78,4 +75,10 @@ public class Book {
     inverseJoinColumns = @JoinColumn(name = "category_id")
   )
   private List<Category> categories;
+
+  @Column
+  private Integer quantity;
+
+  @OneToMany(mappedBy = "bookId", targetEntity = UserFavouriteBook.class)
+  private List<UserFavouriteBook> userFavouriteBooks;
 }

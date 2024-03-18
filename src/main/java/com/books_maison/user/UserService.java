@@ -43,6 +43,10 @@ public class UserService {
     return userRepository.save(user);
   }
 
+  public User getUserById(String id) {
+    return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+  }
+
   public Optional<User> getUserByEmail(String email) {
     return userRepository.findByEmail(email);
   }

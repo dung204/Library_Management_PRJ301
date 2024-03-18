@@ -1,6 +1,7 @@
 package com.books_maison.book;
 
 import com.books_maison.book.entity.Book;
+import com.books_maison.checkout.CheckoutService;
 import com.books_maison.security.SecurityUtils;
 import com.books_maison.user.entity.User;
 import com.books_maison.user_favourite_book.UserFavouriteBookService;
@@ -16,10 +17,16 @@ public class BookController {
 
   private final BookService bookService;
   private final UserFavouriteBookService userFavouriteBookService;
+  private final CheckoutService checkoutService;
 
-  public BookController(BookService bookService, UserFavouriteBookService userFavouriteBookService) {
+  public BookController(
+    BookService bookService,
+    UserFavouriteBookService userFavouriteBookService,
+    CheckoutService checkoutService
+  ) {
     this.bookService = bookService;
     this.userFavouriteBookService = userFavouriteBookService;
+    this.checkoutService = checkoutService;
   }
 
   @GetMapping("/{bookId}")
@@ -31,6 +38,11 @@ public class BookController {
       model.addAttribute(
         "userHasFavouredBook",
         userFavouriteBookService.userHasFavouredBook(currentUser.getId(), bookId)
+      );
+
+      model.addAttribute(
+        "userIsRentingThisBook",
+        checkoutService.userHasUnexpiredCheckoutByBookId(currentUser.getId(), bookId)
       );
     }
 

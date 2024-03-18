@@ -9,7 +9,7 @@
       <button class="first-page-btn btn btn-primary">Trang đầu</button>
     </div>
     <div class="col-auto">
-      <button class="previous-page-btn btn btn-primary">Trang trước</button>
+      <button class="previous-page-btn btn btn-primary" ${param.currentPage == 1 ? 'disabled' : ''}>Trang trước</button>
     </div>
     <div class="col-auto">
       Trang:
@@ -22,7 +22,7 @@
       </select>
     </div>
     <div class="col-auto">
-      <button class="next-page-btn btn btn-primary">Trang sau</button>
+      <button class="next-page-btn btn btn-primary" ${param.currentPage == param.totalPages ? 'disabled' : ''}>Trang sau</button>
     </div>
     <div class="col-auto">
       <button class="last-page-btn btn btn-primary">Trang cuối</button>
