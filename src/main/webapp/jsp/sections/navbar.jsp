@@ -57,7 +57,7 @@
                   </li>
                   <li>
                     <a class="dropdown-item" href="/user/me?tab=renting-books">
-                      Sách đang mượn
+                      Lịch sử mượn sách
                       <components:BookLogo />
                     </a>
                   </li>

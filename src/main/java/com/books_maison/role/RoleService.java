@@ -1,11 +1,11 @@
 package com.books_maison.role;
 
-import org.springframework.stereotype.Service;
-
 import com.books_maison.role.entity.Role;
+import org.springframework.stereotype.Service;
 
 @Service
 public class RoleService {
+
   private final RoleRepository roleRepository;
 
   public RoleService(RoleRepository roleRepository) {

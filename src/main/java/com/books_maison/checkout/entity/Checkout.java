@@ -1,12 +1,7 @@
 package com.books_maison.checkout.entity;
 
-import java.time.LocalDateTime;
-
-import org.hibernate.annotations.CreationTimestamp;
-
 import com.books_maison.book.entity.Book;
 import com.books_maison.user.entity.User;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,16 +10,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "checkouts")
 public class Checkout {
+
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
@@ -43,5 +41,4 @@ public class Checkout {
 
   @Column(nullable = false)
   private LocalDateTime dueTimestamp;
-
 }

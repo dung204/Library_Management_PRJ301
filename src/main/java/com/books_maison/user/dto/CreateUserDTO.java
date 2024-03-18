@@ -1,14 +1,14 @@
 package com.books_maison.user.dto;
 
-import org.hibernate.validator.constraints.Length;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 @Data
 public class CreateUserDTO {
+
   @NotBlank(message = "Email không được để trống")
   @Email(message = "Email không hợp lệ")
   private String email;

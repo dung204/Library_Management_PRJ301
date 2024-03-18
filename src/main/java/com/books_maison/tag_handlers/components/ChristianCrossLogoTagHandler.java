@@ -8,9 +8,9 @@ import lombok.*;
 
 @Setter
 @Getter
-public class PhoneLogoTagHandler extends TagSupport {
+public class ChristianCrossLogoTagHandler extends TagSupport {
 
-  private Logger logger = Logger.getLogger(PhoneLogoTagHandler.class.getName());
+  private Logger logger = Logger.getLogger(ChristianCrossLogoTagHandler.class.getName());
   private String className;
 
   @Override
@@ -20,7 +20,7 @@ public class PhoneLogoTagHandler extends TagSupport {
         .getOut()
         .print(
           """
-          <i class="bi bi-telephone-fill %s"></i>
+          <div class="text-center %s" style="cursor: default">✝</div>
           """.formatted(className == null ? "" : className)
         );
     } catch (IOException e) {

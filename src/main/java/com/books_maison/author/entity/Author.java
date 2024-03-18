@@ -1,39 +1,57 @@
 package com.books_maison.author.entity;
 
-import java.time.LocalDate;
-
+import com.books_maison.book.entity.Book;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Nationalized;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "authors")
 public class Author {
+
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
 
   @Column(nullable = false)
-  private String firstName;
+  @Nationalized
+  private String name;
 
-  @Column(nullable = false)
-  private String lastName;
+  @Column
+  private Integer yearOfBirth;
 
-  @Column()
-  private LocalDate dateOfBirth;
+  @Column
+  private Integer yearOfDeath;
 
-  @Column()
+  @Column
+  @Nationalized
   private String nationality;
 
-  @Column()
+  @Column
   private String imageUrl;
+
+  @Column(columnDefinition = "NTEXT")
+  private String biography;
+
+  @ManyToMany(mappedBy = "authors")
+  private List<Book> books;
+
+  public int getTotalBookCount() {
+    return books.size();
+  }
 }

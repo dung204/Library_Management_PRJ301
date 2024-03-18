@@ -1,13 +1,12 @@
 package com.books_maison.fine;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.books_maison.fine.entity.Fine;
+import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class FineService {
+
   private FineRepository fineRepository;
 
   public FineService(FineRepository fineRepository) {
@@ -33,5 +32,4 @@ public class FineService {
   public List<Fine> getAllFines() {
     return fineRepository.findAll();
   }
-
 }
