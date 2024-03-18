@@ -11,7 +11,6 @@
   <jsp:include page="/jsp/sections/about-us-section.jsp" />
   <jsp:include page="/jsp/sections/categories-section.jsp" />
   <jsp:include page="/jsp/sections/featured-books-section.jsp" />
-  <jsp:include page="/jsp/sections/events-section.jsp" />
   <jsp:include page="/jsp/sections/email-subscription-section.jsp" />
 
   <jsp:include page="/jsp/sections/footer.jsp" />

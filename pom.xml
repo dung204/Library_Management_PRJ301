@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mantrilogix</groupId>
-	<artifactId>prj301_assignment_01</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>prj301_assignment_01</name>
+	<artifactId>books_maison</artifactId>
+	<version>0.0.1</version>
+	<name>books_maison</name>
 	<description>PRJ301 Assignment 1 by Ho Anh Dung - HE181529</description>
 	<properties>
 		<java.version>17</java.version>

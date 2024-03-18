@@ -24,9 +24,6 @@
             <a href="/#featured-books" class="text-decoration-none text-white">Sách nổi bật</a>
           </div>
           <div class="col-auto">
-            <a href="/#events" class="text-decoration-none text-white">Sự kiện</a>
-          </div>
-          <div class="col-auto">
             <a href="/search?type=book" class="text-decoration-none text-white">Tìm kiếm</a>
           </div>
           <div class="col-auto">
