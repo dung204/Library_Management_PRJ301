@@ -104,10 +104,32 @@
         <div class="col-5 align-self-center">
           <div class="row justify-content-center">
             <div class="col-10">
-              <div class="bg-dark rounded-4" style="height: 600px"></div>
+              <div class="about-us-banner bg-dark rounded-4" style="height: 600px"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+<style>
+  .about-us-banner {
+    background-image: url("/images/library-banner-3.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+</style>
+
+<script>
+  const featuredBooks = [
+    <c:forEach items="${requestScope.featuredBooks}" var="book">
+      {
+        id: "${book.id}",
+        title: "${book.title}",
+        author: "${book.authors[0].name}",
+        numberOfPages: "${book.numberOfPages}",
+        description: "${book.description}",
+      }
+    </c:forEach>
+  ]
+</script>
