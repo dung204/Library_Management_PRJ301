@@ -1,23 +1,22 @@
-# PRJ301 Assignment: Library Management Web Application
+# Books Maison Web Application
 
-by Ho Anh Dung - HE181529
+<p align="center">
+    <img src="https://books-maison.live/images/books-maison-logo-light.svg" width="400" style="display: block; margin: 0 auto">
+</p>
 
-Preview: <!-- TODO: Preview URL of the app running in production -->
+_by Ho Anh Dung - HE181529_
+
+Preview URL: https://books-maison.live
 
 ## Table of contents
 
-- [1. Introduction](#1-introduction)
-- [2. Features](#2-features)
-  - [2.1. User features](#21-user-features)
-  - [2.2. Admin features](#22-admin-features)
-- [3. Prequisites](#3-prequisites)
-- [4. How to run](#4-how-to-run)
-  - [4.1. Run the application locally](#41-run-the-application-locally)
-  - [4.2. Run the application in a container](#42-run-the-application-in-a-container)
-- [5. Folder structure](#5-folder-structure)
-- [6. Database design](#6-database-design)
-  - [6.1. Entities](#61-entities)
-  - [6.2. Relationships](#62-relationships)
+1. [Introduction](#1-introduction)
+2. [Features](#2-features)
+3. [How to run the app locally](#3-how-to-run-the-app-locally)
+4. [Folder structure](#4-folder-structure)
+5. [Database design](#5-database-design)
+   1. [Entities](#5.1-entities)
+   2. [Relationships](#5.2-relationships)
 
 ## 1. Introduction
 
@@ -26,14 +25,16 @@ This is a web application for managing a library. It allows users to search for 
 This web application is built with:
 
 - [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
-- [Spring](https://spring.io/) (as the web framework) & Spring Boot
-- [Maven](https://maven.apache.org/) (as the project management tool)
-- [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (as the database management system)
-- [Docker](https://www.docker.com/) (to run the application, and database in a seperated environment, i.e. container)
+- [Spring](https://spring.io/): the web framework and its tools:
+  - [Spring Boot](https://spring.io/projects/spring-boot): Scaffolding, running and building Spring application easily
+  - [Spring Security](https://spring.io/projects/spring-security): Authentication, authorization and access-control framework
+- [Maven](https://maven.apache.org/): the project management tool
+- [Azure SQL database](https://www.microsoft.com/en-us/sql-server/sql-server-downloads): the cloud-based version of SQL Server
 - JSP (Jakarta Server Page, as the view technology)
 - JSTL (Jakarta Standard Tag Library, to simplify the JSP code)
+- [Heroku](): to deploy this web app to the cloud
 
-This is a project for the Assignment 1 of PRJ301 (Java Web Application Development) course at FPT University.
+The purpose of this project for the Assignment 1 of PRJ301 (Java Web Application Development) course at FPT University.
 
 ## 2. Features
 
@@ -42,37 +43,88 @@ This is a project for the Assignment 1 of PRJ301 (Java Web Application Developme
 - Search for books (by category, title, author, or ISBN)
 - View book details
 - Manage checkouts, and checked-out books
-- Pay fines (if overdue)
+- Show their fines (for overdue checkouts)
 
-### 2.2. Admin features
+### 2.2. Admin features (future feature)
 
 - Manage all books, authors, categories, and users
 - Manage all checkouts, and fines
 
-## 3. Prequisites
+## 3. How to run the app locally
 
-- [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
-- [Maven](https://maven.apache.org/download.cgi)
-- [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (if running the application locally)
-- [Docker](https://www.docker.com/products/docker-desktop) (if running the application in a container)
+1. Clone this repository
 
-## 4. How to run
+```cmd
+git clone https://github.com/dung204/books_maison.git
+```
 
-### 4.1. Run the application locally
+2. Create file named `application.properties` under `src/main/resources`, copy & paste the content from `application-example.properties`.
 
-<!-- TODO: 1. Edit env variables in `application.properties` -->
-<!-- TODO: 2. Setup database -->
-<!-- TODO: 3. Run `mvn spring-boot:run` -->
+3. Edit the database URL, username, password
 
-### 4.2. Run the application in a container
+4. Open the terminal and run:
 
-<!-- TODO: Same steps as 4.1 but env variables are in `Dockerfile` instead -->
+```cmd
+mvn spring-boot:run
+```
 
-## 5. Folder structure
+or run this if you don't have Maven installed:
 
-## 6. Database design
+For MacOS/Linux:
 
-### 6.1. Entities
+```sh
+./mvnw spring-boot:run
+```
+
+For Windows:
+
+```cmd
+.\mvnw.cmd spring-boot:run
+```
+
+## 4. Folder structure
+
+```
+├── .mvn/ - Maven wrapper
+├── src/ - Source code
+│   ├── main
+│   │   ├── java - Java code
+│   │   │   └── com
+│   │   │      └── books_maison
+│   │   ├── resources - Project resources
+│   │   │   ├── application-example.properties - Example environment variables file
+│   │   │   ├── data.sql - SQL script to insert initial data
+│   │   └── webapp - The frontend code
+│   │       ├── WEB-INF
+│   │       ├── jsp - JSP files
+│   │       ├── styles - CSS files
+│   │       └── images - Image files
+│   └── test
+├── target/ - Build artifacts
+├── .gitignore - Ignoring some files/folders for git
+├── mvnw - Maven portable for MacOS/Linux
+├── mvnw.cmd - Maven portable for Windows
+├── pom.xml - Project properties file
+├── README.md - This document
+```
+
+Inside `src/main/java/com/books_maison`, each entity is a package. The structure of each entity package (take `User` as an example) is:
+
+```
+├── user - name of the entity
+│   ├── dto - Data Transfer Object
+│   │   ├── CreateUserDTO.java - a DTO class contains fields for creating a user
+│   │   ├── UpdateUserDTO.java - a DTO class contains fields for updating a user
+│   ├── entity - Entity classes
+│   │   ├── User.java - the entity class
+│   ├── UserController.java - the controller class
+│   ├── UserService.java - the service class
+│   ├── UserRepository.java - the repository class
+```
+
+## 5. Database design
+
+### 5.1. Entities
 
 - `User` entity:
 
@@ -82,11 +134,11 @@ erDiagram
         String id PK
         String email
         String password
-        String first_name
-        String last_name
+        String firstName
+        String lastName
         String address
-        Timestamp created_timestamp
-        Timestamp updated_timestamp
+        LocalDateTime createdTimestamp
+        LocalDateTime updatedTimestamp
     }
 ```
 
@@ -110,16 +162,16 @@ erDiagram
 erDiagram
     Book {
         String id PK
-
-        %% ISBN is unique
         String isbn
-
-        String author_id FK
-
         String title
-        Date published_at
+        Integer publishedYear
+        String publisher
         String language
+        Integer numberOfPages
         String image_url
+        String description
+        Author[] authors
+        Category[] categories
     }
 ```
 
@@ -131,11 +183,13 @@ erDiagram
 erDiagram
     Author {
         String id PK
-        String first_name
-        String last_name
-        Date date_of_birth
+        String name
+        Integer yearOfBirth
+        Integer yearOfDeath
         String nationality
-        String image_url
+        String imageUrl
+        String biography
+        Book[] books
 
     }
 ```
@@ -160,10 +214,10 @@ erDiagram
 erDiagram
     Checkout {
         String id PK
-        String user_id FK
-        String book_id FK
-        Timestamp checkout_timestamp
-        Timestamp due_timestamp
+        User user
+        Book book
+        LocalDateTime checkoutTimestamp
+        LocalDateTime dueTimestamp
     }
 ```
 
@@ -174,10 +228,10 @@ erDiagram
 ```mermaid
 erDiagram
     Fine {
-        String checkout_id FK
+        Checkout checkout
 
         %% Transient field
-        Integer overdue_hours
+        Integer overdueHours
 
         %% Transient field
         Double price
@@ -186,7 +240,7 @@ erDiagram
 
 ---
 
-### 6.2. Relationships
+### 5.2. Relationships
 
 ```mermaid
 erDiagram
