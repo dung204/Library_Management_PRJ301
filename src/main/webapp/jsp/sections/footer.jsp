@@ -6,7 +6,7 @@
     <div class="container">
       <div class="row">
         <div class="col-4">
-          <components:MainLogoLight />
+          <jsp:include page="/jsp/others/main-logo-light.jsp" />
           <div class="row gx-5 mt-4">
             <div class="col-auto">
               <components:FacebookLogo className="fs-4" />

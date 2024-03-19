@@ -9,7 +9,7 @@
     <div class="row align-items-center">
       <div class="col-3">
         <a href="/">
-          <components:MainLogoLight />
+          <jsp:include page="/jsp/others/main-logo-light.jsp" />
         </a>
       </div>
       <div class="col-9">

@@ -13,6 +13,7 @@
 	<artifactId>books_maison</artifactId>
 	<version>0.0.1</version>
 	<name>books_maison</name>
+	<packaging>war</packaging>
 	<description>PRJ301 Assignment 1 by Ho Anh Dung - HE181529</description>
 	<properties>
 		<java.version>17</java.version>
@@ -110,6 +111,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>books_maison</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

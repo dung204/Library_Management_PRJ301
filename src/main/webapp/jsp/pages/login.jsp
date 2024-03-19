@@ -10,7 +10,7 @@
       <div class="col-5 bg-white rounded-4 shadow-lg">
         <div class="row justify-content-center gy-3 p-5">
           <div class="col-auto text-center">
-            <components:MainLogoDark />
+            <jsp:include page="/jsp/others/main-logo-dark.jsp" />
           </div>
           <div class="col-12 text-center">
             <h5>Đăng nhập vào Books Maison</h5>
