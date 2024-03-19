@@ -32,7 +32,8 @@ public class AppController {
   }
 
   @GetMapping
-  private String showHomePage() {
+  private String showHomePage(Model model) {
+    model.addAttribute("featuredBooks", bookService.getFiveRandomBooks());
     return "pages/index";
   }
 

@@ -4,6 +4,7 @@ import com.books_maison.book.entity.Book;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,12 @@ public class BookService {
 
   public List<Book> getAllBooks() {
     return bookRepository.findAll();
+  }
+
+  public List<Book> getFiveRandomBooks() {
+    int randomPage = (int) (Math.random() * 20);
+    Pageable pageable = PageRequest.of(randomPage, 5);
+    return getPaginatedBooks(pageable).getContent();
   }
 
   public Page<Book> getPaginatedBooks(Pageable pageable) {

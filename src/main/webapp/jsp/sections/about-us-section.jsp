@@ -119,17 +119,3 @@
     background-position: center;
   }
 </style>
-
-<script>
-  const featuredBooks = [
-    <c:forEach items="${requestScope.featuredBooks}" var="book">
-      {
-        id: "${book.id}",
-        title: "${book.title}",
-        author: "${book.authors[0].name}",
-        numberOfPages: "${book.numberOfPages}",
-        description: "${book.description}",
-      }
-    </c:forEach>
-  ]
-</script>
