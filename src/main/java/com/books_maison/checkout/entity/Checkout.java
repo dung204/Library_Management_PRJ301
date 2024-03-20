@@ -1,6 +1,7 @@
 package com.books_maison.checkout.entity;
 
 import com.books_maison.book.entity.Book;
+import com.books_maison.checkout_status.entity.CheckoutStatus;
 import com.books_maison.user.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,4 +42,7 @@ public class Checkout {
 
   @Column(nullable = false)
   private LocalDateTime dueTimestamp;
+
+  @ManyToOne
+  private CheckoutStatus status;
 }

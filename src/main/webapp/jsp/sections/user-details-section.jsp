@@ -71,8 +71,9 @@
                         <thead>
                           <tr>
                             <th>Tên sách</th>
-                            <th>Ngày đặt mượn sách</th>
+                            <th>Thời gian đặt mượn sách</th>
                             <th>Hạn trả sách</th>
+                            <th>Trạng thái</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -81,6 +82,11 @@
                               <td><a href="/book/${checkout.book.id}">${checkout.book.title}</a></td>
                               <td>${checkout.checkoutTimestamp.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))}</td>
                               <td>${checkout.dueTimestamp.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))}</td>
+                              <td>
+                                <jsp:include page="/jsp/others/checkout-status-item.jsp">
+                                  <jsp:param name="statusId" value="${checkout.status.id}" />
+                                </jsp:include>
+                              </td>
                             </tr>
                           </c:forEach>
                         </tbody>
