@@ -1,6 +1,7 @@
 package com.books_maison.user;
 
 import com.books_maison.role.RoleRepository;
+import com.books_maison.role.entity.RoleEnum;
 import com.books_maison.user.dto.CreateUserDTO;
 import com.books_maison.user.dto.UpdateUserDTO;
 import com.books_maison.user.entity.User;
@@ -39,11 +40,13 @@ public class UserService {
     user.setFirstName(createUserDTO.getFirstName());
     user.setLastName(createUserDTO.getLastName());
     user.setAddress(createUserDTO.getAddress());
-    user.setRole(roleRepository.findByName("USER"));
+    user.setRole(roleRepository.findByName(RoleEnum.USER.name));
     return userRepository.save(user);
   }
 
   public User getUserById(String id) {
+    if (id == null || id.trim().isEmpty()) throw new IllegalArgumentException("Invalid user id");
+
     return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
   }
 

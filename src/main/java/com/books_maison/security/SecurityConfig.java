@@ -8,6 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.books_maison.role.entity.RoleEnum;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -17,7 +19,10 @@ public class SecurityConfig {
     return http
       .csrf(csrf -> csrf.disable())
       .authorizeHttpRequests(
-        authorize -> authorize.requestMatchers("/user/**").authenticated().requestMatchers("/**").permitAll()
+        authorize -> authorize
+          .requestMatchers("/admin/**").hasRole(RoleEnum.ADMIN.name)
+          .requestMatchers("/user/**").authenticated()
+          .requestMatchers("/**").permitAll()
       )
       .formLogin(config -> config.loginPage("/auth/login").usernameParameter("email").loginProcessingUrl("/auth/login"))
       .logout(config -> config.logoutUrl("/auth/logout").logoutSuccessUrl("/"))
