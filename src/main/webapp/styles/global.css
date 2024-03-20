@@ -38,3 +38,7 @@ hr {
 .category-item:hover {
   translate: 0 -0.4rem;
 }
+
+td {
+  vertical-align: middle !important;
+}

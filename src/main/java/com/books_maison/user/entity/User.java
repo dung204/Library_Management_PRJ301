@@ -1,19 +1,14 @@
 package com.books_maison.user.entity;
 
-import com.books_maison.book.entity.Book;
 import com.books_maison.checkout.entity.Checkout;
 import com.books_maison.role.entity.Role;
 import com.books_maison.user_favourite_book.entity.UserFavouriteBook;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -23,7 +18,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CurrentTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Nationalized;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
@@ -63,7 +58,7 @@ public class User implements UserDetails {
   private String imageUrl;
 
   @Column(nullable = false)
-  @CurrentTimestamp
+  @CreationTimestamp
   private LocalDateTime createdTimestamp;
 
   @Column(nullable = false)

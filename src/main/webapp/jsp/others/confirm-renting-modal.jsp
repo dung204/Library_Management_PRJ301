@@ -13,7 +13,7 @@
       <div class="modal-body">
         <div class="row gy-3 justify-content-start">
           <div class="col-12 text-start">Bạn có chắc chắn muốn đặt mượn sách này?</div>
-          <div class="col-12 text-start">Thời hạn để mượn sách là 14 ngày kể từ ngày bạn nhấn nút "Đồng ý"</div>
+          <div class="col-12 text-start">Thời gian mượn sách là <strong>14 ngày kể từ khi bạn nhấn nút "Đồng ý"</strong></div>
           <div class="col-12">
             <div class="alert alert-danger text-start" role="alert">
               <components:ErrorLogo className="me-1" />
