@@ -35,7 +35,6 @@
                 <jsp:param name="className" value="tab-item ${param.tab == 'favourite-books' ? 'tab-item-selected' : ''}" />
                 <jsp:param name="logoComponent" value="<i class='bi bi-heart fs-4'></i>" />
                 <jsp:param name="itemName" value="Sách yêu thích" />
-                <jsp:param name="itemCount" value="${requestScope.paginatedFavouriteBooks.getTotalElements()}" />
               </jsp:include>
               <jsp:include page="/jsp/others/tab-item.jsp">
                 <jsp:param name="url" value="${requestScope['jakarta.servlet.forward.request_uri']}?tab=renting-books" />
@@ -138,23 +137,45 @@
                     <div class="alert alert-danger d-flex align-items-center" role="alert">
                       <div>
                         <components:ErrorLogo className="me-2" />
-                        Hiện tại, hệ thống thanh toán trực tuyến đang bảo trì. Người dùng vui lòng thanh toán các khoản phạt tại quầy thủ thư của thư viện.
+                        Hiện tại, hệ thống thanh toán trực tuyến đang bảo trì. Bạn đọc vui lòng thanh toán các khoản phạt tại quầy thủ thư của thư viện.
                       </div>
                     </div>
-                  </div>
-                </c:when>
-                <c:when test="${param.tab == 'events'}">
-                  <div class="col-12">
-                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <div class="alert alert-primary d-flex align-items-center" role="alert">
                       <div>
-                        <components:ErrorLogo className="me-2" />
-                        Hiện tại, hệ thống thanh toán trực tuyến đang bảo trì. Người dùng vui lòng thanh toán các khoản phạt tại quầy thủ thư của thư viện.
+                        <components:InfoLogo className="me-1" />
+                        Mức tiền phạt: <strong>5.000đ/ngày/1 cuốn sách (kể cả ngày nghỉ)</strong>
                       </div>
                     </div>
                   </div>
+                  <c:if test="${requestScope.paginatedFines.getContent().isEmpty()}">
+                    <div class="col-12 text-center">
+                      <p class="mt-5">Hiện tại người dùng không có khoản phạt nào.</p>
+                    </div>
+                  </c:if>
+                  <c:if test="${!requestScope.paginatedFines.getContent().isEmpty()}">
+                    <div class="col-12 text-center">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>Tên sách</th>
+                            <th>Số phút quá hạn trả</th>
+                            <th>Mức tiền phạt</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <c:forEach items="${requestScope.paginatedFines.getContent()}" var="fine">
+                            <tr>
+                              <td><a href="/book/${fine.checkout.book.id}">${fine.checkout.book.title}</a></td>
+                              <td>${fine.getOverdueMinutes()}</td>
+                              <td>${fine.getFormattedFineAmount()}₫</td>
+                            </tr>
+                          </c:forEach>
+                        </tbody>
+                      </table>
+                    </div>
+                  </c:if>
                 </c:when>
                 <c:when test="${requestScope['jakarta.servlet.forward.request_uri'] == '/user/me/edit'}">
-                  
                   <div class="col-12">
                     <form action="/user/me/edit" method="POST" id="editInfoForm">
                       <div class="row gy-4">
@@ -296,5 +317,5 @@
 </style>
 
 <script>
-  console.log("${requestScope.confirmPasswordErrorMessage}")
+  console.log("${requestScope.paginatedFines.getContent().isEmpty()}")
 </script>

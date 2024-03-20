@@ -2,6 +2,7 @@ package com.books_maison.user;
 
 import com.books_maison.book.BookService;
 import com.books_maison.checkout.CheckoutService;
+import com.books_maison.fine.FineService;
 import com.books_maison.security.SecurityUtils;
 import com.books_maison.user.dto.UpdateUserDTO;
 import com.books_maison.user.entity.User;
@@ -27,11 +28,18 @@ public class UserController {
   private final UserService userService;
   private final BookService bookService;
   private final CheckoutService checkoutService;
+  private final FineService fineService;
 
-  public UserController(UserService userService, BookService bookService, CheckoutService checkoutService) {
+  public UserController(
+    UserService userService,
+    BookService bookService,
+    CheckoutService checkoutService,
+    FineService fineService
+  ) {
     this.userService = userService;
     this.bookService = bookService;
     this.checkoutService = checkoutService;
+    this.fineService = fineService;
   }
 
   @GetMapping("/me/**")
@@ -49,21 +57,30 @@ public class UserController {
     }
 
     Date createdDate = Date.from(currentUser.getCreatedTimestamp().atZone(ZoneId.systemDefault()).toInstant());
+    model.addAttribute("createdDate", createdDate);
 
-    Pageable favouriteBooksPageable = PageRequest.of(pageNumber, pageSize).withSort(Direction.DESC, "publishedYear");
-    model.addAttribute(
-      "paginatedFavouriteBooks",
-      bookService.getPaginatedFavouriteBooksByUserId(favouriteBooksPageable, currentUser.getId())
-    );
+    if (tab.equals("favourite-books")) {
+      Pageable favouriteBooksPageable = PageRequest.of(pageNumber, pageSize).withSort(Direction.DESC, "publishedYear");
+      model.addAttribute(
+        "paginatedFavouriteBooks",
+        bookService.getPaginatedFavouriteBooksByUserId(favouriteBooksPageable, currentUser.getId())
+      );
+    }
 
-    Pageable checkoutsPageable = PageRequest.of(pageNumber, pageSize).withSort(Direction.DESC, "checkoutTimestamp");
-    model.addAttribute(
-      "paginatedCheckouts",
-      checkoutService.getPaginatedCheckoutsByUserId(checkoutsPageable, currentUser.getId())
-    );
+    if (tab.equals("renting-books")) {
+      Pageable checkoutsPageable = PageRequest.of(pageNumber, pageSize).withSort(Direction.DESC, "checkoutTimestamp");
+      model.addAttribute(
+        "paginatedCheckouts",
+        checkoutService.getPaginatedCheckoutsByUserId(checkoutsPageable, currentUser.getId())
+      );
+    }
+
+    if (tab.equals("fines")) {
+      Pageable finesPageable = PageRequest.of(pageNumber, pageSize).withSort(Direction.DESC, "createdAt");
+      model.addAttribute("paginatedFines", fineService.getPaginatedFinesByUserId(finesPageable, currentUser.getId()));
+    }
 
     model.addAttribute("user", currentUser);
-    model.addAttribute("createdDate", createdDate);
     return "pages/user-details";
   }
 

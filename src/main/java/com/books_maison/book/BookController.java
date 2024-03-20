@@ -42,7 +42,7 @@ public class BookController {
 
       model.addAttribute(
         "userIsRentingThisBook",
-        checkoutService.userHasUnexpiredCheckoutByBookId(currentUser.getId(), bookId)
+        checkoutService.userHasNotYetReturnedCheckoutByBookId(currentUser.getId(), bookId)
       );
     }
 
