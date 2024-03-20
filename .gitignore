@@ -42,3 +42,14 @@ build/
 **/application-staging.properties
 **/application-uat.properties
 **/application-preprod.properties
+
+### YAML ###
+**/application.yml
+**/application-dev.yml
+**/application-prod.yml
+**/application-qa.yml
+**/application-test.yml
+**/application-local.yml
+**/application-staging.yml
+**/application-uat.yml
+**/application-preprod.yml
