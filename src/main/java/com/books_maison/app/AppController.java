@@ -1,4 +1,4 @@
-package com.books_maison;
+package com.books_maison.app;
 
 import com.books_maison.author.AuthorService;
 import com.books_maison.author.entity.Author;

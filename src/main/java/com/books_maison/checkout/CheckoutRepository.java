@@ -1,6 +1,8 @@
 package com.books_maison.checkout;
 
 import com.books_maison.checkout.entity.Checkout;
+import com.books_maison.checkout_status.entity.CheckoutStatus;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,10 +17,9 @@ public interface CheckoutRepository extends JpaRepository<Checkout, String> {
     "SELECT c FROM Checkout c " +
     "WHERE c.user.id = :userId " +
     "AND c.book.id = :bookId " +
-    "AND CURRENT_TIMESTAMP >= c.checkoutTimestamp " +
-    "AND c.dueTimestamp > CURRENT_TIMESTAMP"
+    "AND c.status.id IN (1, 2)"
   )
-  Optional<Checkout> findUnexpiredCheckoutByUserIdAndBookId(
+  Optional<Checkout> findNotYetReturnedCheckoutByUserIdAndBookId(
     @Param("userId") String userId,
     @Param("bookId") String bookId
   );
@@ -28,4 +29,9 @@ public interface CheckoutRepository extends JpaRepository<Checkout, String> {
     countQuery = "SELECT COUNT(c) FROM Checkout c JOIN Book b ON c.book.id = b.id WHERE c.user.id = :userId"
   )
   Page<Checkout> findAllByUserId(Pageable pageable, @Param("userId") String userId);
+
+  @Query(
+    "SELECT c FROM Checkout c " + "WHERE c.status.id = 1 " + "AND c.dueTimestamp < DATEADD(hour, 7, CURRENT_TIMESTAMP)"
+  )
+  List<Checkout> findAllNotYetMarkedOverdueCheckouts();
 }
