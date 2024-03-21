@@ -14,4 +14,14 @@
     </attribute>
   </tag>
 
+  <tag>
+    <name>Admin</name>
+    <tag-class>com.books_maison.tag_handlers.layouts.AdminLayoutTagHandler</tag-class>
+    <attribute>
+      <name>title</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
 </taglib>

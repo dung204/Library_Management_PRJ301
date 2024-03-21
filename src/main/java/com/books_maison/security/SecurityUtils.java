@@ -9,14 +9,6 @@ public class SecurityUtils {
 
   public static User getCurrentSessionUser() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    // if (!(authentication instanceof AnonymousAuthenticationToken)) {
-    //   User currentUser = (User) authentication.getPrincipal();
-
-    //   return currentUser;
-    // }
-
-    // return null;
-
     if (authentication instanceof AnonymousAuthenticationToken) {
       return null;
     }

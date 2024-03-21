@@ -324,4 +324,13 @@
       <required>false</required>
     </attribute>
   </tag>
+
+  <tag>
+    <name>PersonGearLogo</name>
+    <tag-class>com.books_maison.tag_handlers.components.PersonGearLogoTagHandler</tag-class>
+    <attribute>
+      <name>className</name>
+      <required>false</required>
+    </attribute>
+  </tag>
 </taglib>

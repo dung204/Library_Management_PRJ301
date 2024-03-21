@@ -64,6 +64,14 @@
                       <components:HeartLogo />
                     </a>
                   </li>
+                  <sec:authorize access="hasAuthority('ADMIN')">
+                    <li>
+                      <a class="dropdown-item" href="/admin">
+                        Trang quản trị
+                        <components:PersonGearLogo />
+                      </a>
+                    </li>
+                  </sec:authorize>
                   <li>
                     <a class="dropdown-item" href="/auth/logout">
                       Đăng xuất
